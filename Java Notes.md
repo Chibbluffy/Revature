@@ -1,0 +1,21 @@
+#Java Basics
+- High level language
+- Automatic memory managements
+	- Garbage collection
+	- explicitly designed to prevent writing pointers
+- Strongly typed
+	- cant coerce value
+- Statically typed
+	- All var must have type whe created, and methods must have return types
+- compiled language
+	- write .java
+	- compile to .class file
+	- write once, run anywhere
+- Scalable
+	- python readable
+	- JS flexible
+- very OOP
+	- other than primitives and lambdas, very OOP
+- Widely used in enterprise
+- 
+

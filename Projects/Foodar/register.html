@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Foodar: Registration</title>
+    <h1>Foodar</h1>
+</head>
+<body>
+    <div>
+        <h1>Register</h1>
+    </div>
+    <hr style="color: green" />
+    <p>Please fill out the form below:</p>
+    <br/>
+    <p>Details:</p>
+<div>
+<form method="post" action="handler">
+<fieldset>
+<legend>User Information</legend>
+<label>Email:       <input name="email" type="email"></input></label>
+<label>Password:    <input name="password" type="password"></input></label>
+<br/>
+<label>First Name:  <input name="fname"></input></label>
+<label>Last Name:   <input name="lname"></input></label>
+</fieldset>
+
+<fieldset>
+<legend>Address</legend>
+<label>Address<input name="address"></input></label>
+<label>Street<input name="street"></input></label>
+<br/>
+<label>City<input name="city"></input></label>
+<label>Zipcode<input name="zip"></input></label>
+<label>State<select name="state">
+    <option value="VA">VA</option>
+    <option value="MD">MD</option>
+    <option value="DC">DC</option>
+</select>
+</label>
+</fieldset>
+<button type="submit">Register</button>
+</form>
+</div>
+
+</body>
+</html>

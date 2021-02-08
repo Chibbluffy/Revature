@@ -1,0 +1,23 @@
+* {
+    font-family: sans-serif;
+    padding: 5px;
+}
+span {
+    display: block;
+}
+.aboutheader {
+    text-align: center;
+    color: ;
+    background-image: url("fastfood.jpeg");
+}
+title {
+    align-self: top-left;
+}
+div {
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#feature-image {
+    
+}
