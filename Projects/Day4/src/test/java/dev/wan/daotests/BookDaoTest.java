@@ -6,6 +6,7 @@ import dev.wan.entities.Book;
 import org.junit.jupiter.api.*;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
 // Unless specifically use annotation to specify order, they will not run in a pre-determined way
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -13,7 +14,8 @@ public class BookDaoTest {
     private static BookDAO bdao = new BookDaoLocal();
 
     private static Book testBook = null;
-
+    private static Logger logger = Logger.getLogger(BookDaoTest.class);
+//    class c = String.class;
 
     @Test
     @Order(1)
@@ -32,6 +34,7 @@ public class BookDaoTest {
         Assertions.assertNotEquals(0, book1.getBookId());
         Assertions.assertNotEquals(0, book2.getBookId());
 
+        logger.info("creating book test");
     }
 
     @Test

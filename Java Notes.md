@@ -6,7 +6,7 @@
 - Strongly typed
 	- cant coerce value
 - Statically typed
-	- All var must have type whe created, and methods must have return types
+	- All var must have type when created, and methods must have return types
 - compiled language
 	- write .java
 	- compile to .class file
@@ -17,5 +17,237 @@
 - very OOP
 	- other than primitives and lambdas, very OOP
 - Widely used in enterprise
-- 
+- Java Bean**
+	- encapsulated, private vars. Empty constructor. Getters and setter
 
+
+#Review
+- High level features of Java
+	- Strongly and statically typed language
+	- Compiled language
+		- write .java source code, execute a .class java byte code
+	- WORA (Write once run anywhere)
+		- Any Java application will run the same on any machine with a JVM
+	- **JDK vs JRE vs JVM**
+		- **JDK**: Java Development Kit
+			- Needed by developers ONLY
+			- Contains compiler, and tool that turns .java to .class
+		- **JRE**: Java Runtime Environment
+			- Needed to run any java application
+			- what most people have
+		- **JVM**: Java Virtual Machine
+			- Virtual Memory and Processors
+	- Java is 99% OOP language
+		- primitives
+		- lambdas
+	- Extensive libraries and enterprise software
+	- Designed to be very scalable
+	- Automatic Memory Management
+		- Garbage collection
+	- Java is 100% pass by value
+		- When calling function you are not actually passing in an object. Instead you are passing in a copy of the objects memory address. 
+- Pillars of OOP (APIE)
+	- **Abstraction**
+		- hiding implementation details
+		- Dont need to know how something works, only how to use it
+			- interfaces and abstract classes
+				- code to an interface but do not need to know the implementation class
+	- **Polymorphism**
+		- One object, many labels
+			- A reference variable can refer to an object by any legitimate parent class or interface
+		- Runtime Polymorphism
+			- Overriding: Child class overrides/changes implementation of an inherited method
+			- SAME method signature but different implementation
+		- Static Polymorphism
+			- Overloading: Same method name, different parameters
+			- Has to be done in the same class
+	- **Inheritance**
+		- Ability of classes to inherit the fields and methods(properties) of another class
+		- Allows us to avoid repeating the same code
+		- Allows creation of logical hierarchies
+	- **Encapsulation**
+		- Protecting our methods and fields from other parts of code
+		- Done with Access Modifiers
+			- MODIFIERS ARE NOT SCOPES
+			- public: accessible anywhere
+			- protected: package and inherited packages
+			- default: package
+			- private: class
+	- Abstract classes vs interfaces
+		- Abstract class 
+			- cannot directly instantiate
+			- must ALWAYS build a child class
+			- Can have concrete methods (methods with implementation)
+			- Can have abstract methods (methods with no implementation)
+			- Can have fields
+			- Abstract classes can ONLY be inherited
+		- Interface
+			- Only abstract methods
+				- there is a default keyword
+			- All variables are public static and final
+			- implement as many interfaces as you want
+			- functional interface: Interface with a single method signature used to create lambdas
+			- Marker interface: is empty and used solely to give a type to a class
+	- Constructors
+		- special method that creates an instance of a class and sets it up
+		- must be named the same as the class name
+		- can overload constructors as much as you want
+		- the only methods in java that do not have a return type
+		- Every constructor starts with a call to super which creates the parent object
+	- Object class
+		- grandparent class that every other class in java inherits from
+		- everything is of type object
+		- important methods
+			- Equals()
+				- returns boolean if object is equal
+			- toString()
+				- returns a string representation of the object
+				- default is to print memory address
+	- Wrapper classes
+		- object versions of primitives
+		- provide utility of an object with methods
+		- are a bit slower than primitives as it has to be instantiated
+		- Autoboxing
+			- primitive to wrapper
+		- unboxing
+			- wrapper to primitive
+	- Exception Handling
+		- Exception is an object that holds information about the failure 
+		- Exceptions are throwable
+		- Keywords
+			- try
+				- please run this code
+			- catch
+				- if an exception is thrown, catch and deal with it
+			- finally
+				- always executes 
+			- Throw
+				- sends flying and exception
+			- Throws
+				- warning on method signature that a certain exception can be generated
+		- Checked Exceptions / Compile time exceptions
+			- Exceptions which MUST be handled in your code in order for it to compile
+			- Design choice to FORCE devs to handle failures
+		- Unchecked Exceptions / Runtime exceptions
+			- exceptions you are not required to handle
+			- but you should
+		- Error
+			- A catastrophic failure
+			- Cannot be recovered from
+			- Must rewrite code
+	- Collections Framework
+		- The CF is a series of interfaces and classes whose main purpise is to hold objects
+		- Iterable is the top of the collection framework
+		- Key interfaces
+			- List 
+				- maintains order of insertion
+				- allows duplicates
+			- Set
+				- does not maintain order
+				- does not allow duplicates
+			- Queue
+				- FIFO
+			- Map 
+				- Does not implement Collection or Iterable interface
+				- Stores objects as key value pairs
+	- Generics
+		- <> diamond brackets/angle brackets
+		- Allow us to set a type for certain interfaces or classes
+		- Used heavily in collections to restrict what type of object is allowed to be stored in a particular collection   
+		```
+		List<String> strings = new ArrayList<String>();
+		```  
+		- Also accepted, but not good for Java, a strongly and statically typed language  
+		```List strings = new ArrayList();``` 
+		 
+	- Scopes of a variable
+		- THERE IS NO GLOBAL SCOPE
+		- Class/Static scope
+			- attached to the class itself
+			- only one copy
+		- Instance/object scope
+			- Attached to the object
+			- one copy per object
+		- method scope
+			- variables passed into a function
+		- Local/block scope
+			- variables defined within a function
+	- Functional Programming
+		- a different paradigm of programming than OOP
+		- Lambdas
+			- ability to store a defined piece of code in a variable
+			- pass lambdas to other methods to use
+			- a lambda passed as an argument iss called a callback function
+		- Creating a lambda in Java
+			- Functional Interface  
+		```MyLambda func = (arguments) -> {code};```   
+		
+		- Examples
+			- Comparator
+			- Runnable
+			- Collections.sort(list, lambda)
+	- String
+		- String is an object, not a primitive
+		- Strings use a string pool
+			- strings of same value are the same object in memory
+			- Saves on memory
+			- Strings are immutable and cannot be changed once created
+		- StringBuilder
+			- Mutable version of string
+			- Directly modify value
+			- Much more efficient for character manipulations
+		- StringBuffer
+			- Thread-safe version of string builder
+- Design Patterns
+	- Java beans
+		- any class that has private fields
+		- public getters and setter
+		- no args constructor
+		- technically implements serializable, but not supposed to do that anymore
+	- Factory
+		- method that returns an implementation of an interface
+		- allows a developer to pass in arguments for what they want and the method will choose the best option. the dev does not need to know it
+			- ArrayList vs LinkedList example
+	- Dependency Injection
+		- Create an object by passing in the other objects (dependencies) it needs to function 
+		- ```BookService bserv = new BookService(new BookDaoLocal());```
+- JUnit
+	- The most popular testing framework in Java
+	- We are using JUnit 5 (latest version)
+	- Annotations
+		- @Test
+		- @TestMethodOrder
+		- @Order(1)
+		- a LOT more
+- TDD
+	- Write tests first
+	- If you are not doing TDD you are doing BUG driven development
+	- First design interface
+	- Second design tests for that interface
+	- Third write the implementation of that interface
+	- Pros:
+		- Spot bugs early
+		- Build upon reliable code/tests
+		- Much easier to write code if you can test it constantly
+- Threads
+	- Thread is a path of execution through a program
+	- Thread is a multi-threaded language
+		- Run multiple threads  in parallel/simultaneously
+		- Can optimize performance
+		- Can lead to consistency bugs
+		- Significantly harder to write good reliable multi-threaded code
+	- Make Thread
+	- Create a runnable lambda
+	- Pass it into the constructor of a Thread Class
+		- To start the thread
+		- ```Thread.start();```
+		
+- Gradle
+	- Build Tool (it builds software applications)
+		- Platform agnostic technically
+		- Can be used for any platform (Java, C, Ruby, etc)
+	- Main file for any project built with gradle is ```build.gradle```
+		- a script that builds the project
+		- Sets name, 
+		- builds external libraries, dependencies
+	- Gradle is written in Groovy
