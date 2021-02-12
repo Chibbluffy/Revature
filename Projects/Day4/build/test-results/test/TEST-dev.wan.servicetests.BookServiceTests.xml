@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.wan.servicetests.BookServiceTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-02-11T20:33:01" hostname="Xians-MacBook-Pro.local" time="0.108">
+  <properties/>
+  <testcase name="register_book()" classname="dev.wan.servicetests.BookServiceTests" time="0.096"/>
+  <testcase name="update_book_checkout()" classname="dev.wan.servicetests.BookServiceTests" time="0.008"/>
+  <system-out><![CDATA[Book{bookId=1, title='Harry Potter', author='JK', condition=3, available=true, dueDate=0}
+Book{bookId=1, title='Harry Potter', author='JK', condition=3, available=false, dueDate=1613680381}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

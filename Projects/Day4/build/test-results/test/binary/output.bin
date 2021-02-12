@@ -1,0 +1,2 @@
+ZBook{bookId=1, title='Harry Potter', author='JK', condition=3, available=true, dueDate=0}
+dBook{bookId=1, title='Harry Potter', author='JK', condition=3, available=false, dueDate=1613680381}

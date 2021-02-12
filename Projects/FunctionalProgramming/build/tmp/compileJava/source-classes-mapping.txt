@@ -1,0 +1,10 @@
+dev/wan/lambdas/Lambdaintro.java
+ dev.wan.lambdas.Lambdaintro
+dev/wan/lambdas/BasketballPlayground.java
+ dev.wan.lambdas.BasketballPlayground
+dev/wan/lambdas/Player.java
+ dev.wan.lambdas.Player
+dev/wan/lambdas/MathOperation.java
+ dev.wan.lambdas.MathOperation
+dev/wan/lambdas/MyLambdaPlayground.java
+ dev.wan.lambdas.MyLambdaPlayground

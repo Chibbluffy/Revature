@@ -21,6 +21,6 @@ public class ScopePlayground {
         // 2. Instance or object
         // 3. Parameter or method
         // 4. Local
-        
+
     }
 }

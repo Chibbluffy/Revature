@@ -1,0 +1,10 @@
+dev/wan/entities/Book.java
+ dev.wan.entities.Book
+dev/wan/daos/BookDAO.java
+ dev.wan.daos.BookDAO
+dev/wan/daos/BookDaoLocal.java
+ dev.wan.daos.BookDaoLocal
+dev/wan/services/BookService.java
+ dev.wan.services.BookService
+dev/wan/services/BookServiceImpl.java
+ dev.wan.services.BookServiceImpl

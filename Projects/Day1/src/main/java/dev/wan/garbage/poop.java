@@ -4,11 +4,11 @@ public class poop {
     String color;
     String consistency;
 
-    /*
-    @override
+
+    @Override
     public void finalize(){
         System.out.printf("Deleting poop. It was " + this.color);
     }
-    */
+
 
 }
