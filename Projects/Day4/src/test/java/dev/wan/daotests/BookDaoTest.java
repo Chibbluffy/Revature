@@ -6,7 +6,7 @@ import dev.wan.entities.Book;
 import org.junit.jupiter.api.*;
 
 import java.util.Set;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 // Unless specifically use annotation to specify order, they will not run in a pre-determined way
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
