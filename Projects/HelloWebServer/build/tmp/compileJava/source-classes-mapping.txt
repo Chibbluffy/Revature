@@ -1,2 +1,4 @@
+dev/wan/app/Person.java
+ dev.wan.app.Person
 dev/wan/app/App.java
  dev.wan.app.App
