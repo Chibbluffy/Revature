@@ -1,10 +1,16 @@
 dev/wan/entities/Book.java
  dev.wan.entities.Book
-dev/wan/daos/BookDAO.java
- dev.wan.daos.BookDAO
 dev/wan/daos/BookDaoLocal.java
  dev.wan.daos.BookDaoLocal
 dev/wan/services/BookService.java
  dev.wan.services.BookService
+dev/wan/daos/BookDAO.java
+ dev.wan.daos.BookDAO
+dev/wan/daos/BookDaoDatabase.java
+ dev.wan.daos.BookDaoDatabase
 dev/wan/services/BookServiceImpl.java
  dev.wan.services.BookServiceImpl
+dev/wan/app/App.java
+ dev.wan.app.App
+dev/wan/controllers/BookController.java
+ dev.wan.controllers.BookController

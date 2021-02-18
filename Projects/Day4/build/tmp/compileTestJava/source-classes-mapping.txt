@@ -1,4 +1,6 @@
-dev/wan/servicetests/BookServiceTests.java
- dev.wan.servicetests.BookServiceTests
 dev/wan/daotests/BookDaoTest.java
  dev.wan.daotests.BookDaoTest
+dev/wan/servicetests/SearchByTitleTests.java
+ dev.wan.servicetests.SearchByTitleTests
+dev/wan/servicetests/BookServiceTests.java
+ dev.wan.servicetests.BookServiceTests

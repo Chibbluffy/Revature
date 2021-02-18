@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.wan.servicetests.SearchByTitleTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-02-16T21:23:19" hostname="Xians-MacBook-Pro.local" time="1.355">
+  <properties/>
+  <testcase name="search_by_title()" classname="dev.wan.servicetests.SearchByTitleTests" time="1.344"/>
+  <testcase name="search_by_title_case_insensitive()" classname="dev.wan.servicetests.SearchByTitleTests" time="0.009"/>
+  <system-out><![CDATA[[Book{bookId=2, title='Harry Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=3, title='Harrier Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=4, title='Even Harrier Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=6, title='Harriest Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=1, title='The Great Gats', author='F Scott', condition=1, available=true, dueDate=0}, Book{bookId=5, title='Very Very Harry Potter', author='JK', condition=1, available=true, dueDate=0}]
+[Book{bookId=2, title='Harry Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=4, title='Even Harrier Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=3, title='Harrier Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=1, title='The Great Gats', author='F Scott', condition=1, available=true, dueDate=0}, Book{bookId=6, title='Harriest Potter', author='JK', condition=1, available=true, dueDate=0}, Book{bookId=5, title='Very Very Harry Potter', author='JK', condition=1, available=true, dueDate=0}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
