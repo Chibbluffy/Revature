@@ -2,6 +2,7 @@ package dev.wan.daotests;
 
 import dev.wan.daos.BookDAO;
 import dev.wan.daos.BookDaoLocal;
+import dev.wan.daos.BookDaoPostgres;
 import dev.wan.entities.Book;
 import org.junit.jupiter.api.*;
 
@@ -11,8 +12,8 @@ import org.apache.log4j.Logger;
 // Unless specifically use annotation to specify order, they will not run in a pre-determined way
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookDaoTest {
-    private static BookDAO bdao = new BookDaoLocal();
-
+//    private static BookDAO bdao = new BookDaoLocal();
+    private static BookDAO bdao = new BookDaoPostgres();
     private static Book testBook = null;
     private static Logger logger = Logger.getLogger(BookDaoTest.class);
 //    class c = String.class;
@@ -50,11 +51,11 @@ public class BookDaoTest {
     @Test
     @Order(3)
     void update_book(){
-        Book b = bdao.getBookById(testBook.getBookId());
+        Book b = bdao.getBookById(testBook.getBookId()-1);
         b.setCondition(3);
         bdao.updateBook(b); // should update book to have worse condition
 
-        Book updatedBook = bdao.getBookById(testBook.getBookId());
+        Book updatedBook = bdao.getBookById(testBook.getBookId()-1);
         Assertions.assertEquals(3, updatedBook.getCondition());
     }
 

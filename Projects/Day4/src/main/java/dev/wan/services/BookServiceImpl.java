@@ -2,11 +2,16 @@ package dev.wan.services;
 
 import dev.wan.daos.BookDAO;
 import dev.wan.entities.Book;
+import org.apache.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class BookServiceImpl implements BookService{
+
+    private static Logger logger = Logger.getLogger(BookServiceImpl.class.getName());
+    // when the logger writes, it will write what class it was from
+
 
     // Our service needs a dao to get and save books
     // BookDAO is a dependency
@@ -55,10 +60,12 @@ public class BookServiceImpl implements BookService{
         if (oldBook.isAvailable() == true && book.isAvailable() == false){
             // check if book is checked out
             book.setDueDate(System.currentTimeMillis()/1000+604_800);
+            logger.info("Book ID " + book.getBookId() + "was checked out");
         }
         else if (oldBook.isAvailable() == false && book.isAvailable() == true){
             // check if book is checked out
             book.setDueDate(0);
+            logger.info("Book ID " + book.getBookId() + "was checked in");
         }
         this.bdao.updateBook(book);
         return book;
