@@ -1,6 +1,7 @@
 package dev.wan.controllers;
 
 import com.google.gson.Gson;
+import dev.wan.daos.AccountDaoDB;
 import dev.wan.daos.AccountDaoLocal;
 import dev.wan.entities.Account;
 import dev.wan.services.AccountService;
@@ -10,7 +11,7 @@ import io.javalin.http.Handler;
 import java.util.Set;
 
 public class AccountController {
-    private AccountService accountService = new AccountServiceImpl(new AccountDaoLocal());
+    private AccountService accountService = new AccountServiceImpl(new AccountDaoDB());
     Gson gson = new Gson();
 
     // POST /clients/:id/accounts
@@ -24,13 +25,17 @@ public class AccountController {
     };
 
     // GET  /clients/:id/accounts
-    // accountController.getAllAccountsByClientIdHandler);           // 200/404
     // ^ should handle queries too (amountLessThan, amountGreaterThan)
     public Handler getAllAccountsByClientIdHandler = (ctx) -> {
         int clientId = Integer.parseInt(ctx.pathParam("id"));
-        int amountLessThan = Integer.parseInt(ctx.queryParam("amountLessThan", "None"));
-        int amountGreaterThan = Integer.parseInt(ctx.queryParam("amountGreaterThan", "None"));
-        Set<Account> allAccountsFromClient = this.accountService.getAccountsByClientId(clientId);
+        int amountLessThan = Integer.parseInt(ctx.queryParam("amountLessThan", "-1"));
+        int amountGreaterThan = Integer.parseInt(ctx.queryParam("amountGreaterThan", "-1"));
+        Set<Account> allAccountsFromClient;
+        if (amountLessThan != -1 && amountGreaterThan != -1){
+            allAccountsFromClient = this.accountService.getAccountsByClientId(clientId, amountGreaterThan, amountLessThan);
+        }else{
+            allAccountsFromClient = this.accountService.getAccountsByClientId(clientId);
+        }
         String accountsJSON = gson.toJson(allAccountsFromClient);
         if (accountsJSON != null){
             ctx.result(accountsJSON);

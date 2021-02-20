@@ -1,6 +1,7 @@
 package dev.wan.controllers;
 
 import com.google.gson.Gson;
+import dev.wan.daos.ClientDaoDB;
 import dev.wan.daos.ClientDaoLocal;
 import dev.wan.entities.Client;
 import dev.wan.services.ClientService;
@@ -10,7 +11,7 @@ import io.javalin.http.Handler;
 import java.util.Set;
 
 public class ClientController {
-    private ClientService clientService = new ClientServiceImpl(new ClientDaoLocal());
+    private ClientService clientService = new ClientServiceImpl(new ClientDaoDB());
     Gson gson = new Gson();
 
     //  POST /clients

@@ -12,6 +12,7 @@ public interface AccountDao {
 
     // Read
     Set<Account> getAccountsByClientId(int id);
+    Set<Account> getAccountsByClientId(int id, float balanceMin, float balanceMax);
     Account getAccountByIds(int clientId, int accountId);
 
     // Update

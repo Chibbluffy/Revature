@@ -4,7 +4,7 @@ public class Account {
     private int accountId;
     private int clientId;
     private String accountType;
-    private int balance;
+    private float balance;
 
     public Account(){
 
@@ -39,11 +39,11 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 

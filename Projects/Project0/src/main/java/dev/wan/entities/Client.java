@@ -9,6 +9,9 @@ public class Client {
     int creditScore;
 
 
+    public Client() {
+    }
+
     public Client(int id, String firstName, String lastName, int birthYear, int creditScore) {
         this.id = id;
         this.firstName = firstName;

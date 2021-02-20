@@ -30,6 +30,11 @@ public class AccountDaoLocal implements AccountDao{
     }
 
     @Override
+    public Set<Account> getAccountsByClientId(int id, float balanceMin, float balanceMax) {
+        return null;
+    }
+
+    @Override
     public Account getAccountByIds(int clientId, int accountId) {
         return null;
     }
@@ -44,10 +49,11 @@ public class AccountDaoLocal implements AccountDao{
 
     @Override
     public boolean deleteAccountByIds(int clientId, int accountId) {
-        Account account = accountTable.remove(accountId);
-        if (account == null){
-            return false;
-        }
-        return true;
+        return false;
+//        Account account = accountTable.remove(accountId);
+//        if (account == null){
+//            return false;
+//        }
+//        return true;
     }
 }

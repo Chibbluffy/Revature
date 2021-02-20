@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.wan.services.ClientServiceImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-19T23:12:23" hostname="Xians-MacBook-Pro.local" time="0.091">
+  <properties/>
+  <testcase name="register_client_test()" classname="dev.wan.services.ClientServiceImplTest" time="0.091"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Feb 19, 2021 5:12:23 PM dev.wan.services.ClientServiceImpl registerClient
+INFO: Registered new client!
+]]></system-err>
+</testsuite>

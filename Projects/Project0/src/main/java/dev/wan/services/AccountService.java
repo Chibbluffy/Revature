@@ -8,6 +8,7 @@ public interface AccountService {
     Account registerAccount(Account account);
 
     Set<Account> getAccountsByClientId(int id);
+    Set<Account> getAccountsByClientId(int id, float balanceMin, float balanceMax);
     Account getAccountByIds(int clientId, int accountId);
 
     Account updateAccount(Account account);

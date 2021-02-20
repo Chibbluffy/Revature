@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountDaoTest {
-    private static AccountDao adao = new AccountDaoLocal();
+    private static AccountDao adao = new AccountDaoDB();
     private static Account testAccount = null;
     private static Logger logger = Logger.getLogger(AccountDaoTest.class.getName());
 

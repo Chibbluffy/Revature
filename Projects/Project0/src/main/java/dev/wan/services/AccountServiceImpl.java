@@ -14,8 +14,6 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public Account registerAccount(Account account) {
-//        account.setAccountId();
-//        account.
         this.accountDao.createAccount(account);
         return account;
     }
@@ -26,14 +24,18 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
+    public Set<Account> getAccountsByClientId(int id, float balanceMin, float balanceMax) {
+        return this.accountDao.getAccountsByClientId(id, balanceMin, balanceMax);
+    }
+
+    @Override
     public Account getAccountByIds(int clientId, int accountId) {
         return this.accountDao.getAccountByIds(clientId, accountId);
     }
 
     @Override
     public Account updateAccount(Account account) {
-        Account oldAccount = this.accountDao.getAccountByIds(account.getClientId(), account.getAccountId());
-//        if (oldAccount.)
+//        Account oldAccount = this.accountDao.getAccountByIds(account.getClientId(), account.getAccountId());
         this.accountDao.updateAccount(account);
         return account;
     }

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ClientDaoTest {
-    private static ClientDao cdao = new ClientDaoLocal();
+    private static ClientDao cdao = new ClientDaoDB();
     private static Client testClient = null;
 
     @Test
@@ -26,7 +26,7 @@ class ClientDaoTest {
         testClient = client1;
 
         Assertions.assertNotEquals(0,client1.getId());
-        Assertions.assertEquals(2, client2.getId());
+        Assertions.assertTrue(client2.getId() > 1);
     }
 
     @Test
@@ -41,8 +41,9 @@ class ClientDaoTest {
     @Test
     @Order(3)
     void get_all_clients_test(){
+        cdao.createClient(testClient);
         Set<Client> allClients = cdao.getAllClients();
-        Assertions.assertEquals(2, allClients.size());
+        Assertions.assertTrue(1 < allClients.size());
     }
 
     @Test
@@ -55,6 +56,7 @@ class ClientDaoTest {
 
         Client updatedClient = cdao.getClientById(testClient.getId());
         Assertions.assertEquals("Wann", updatedClient.getLastName());
+        Assertions.assertEquals(850, updatedClient.getCreditScore());
     }
 
     @Test
