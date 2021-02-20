@@ -8,7 +8,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class ClientDaoLocalTest {
+class ClientDaoTest {
     private static ClientDao cdao = new ClientDaoLocal();
     private static Client testClient = null;
 
