@@ -107,11 +107,15 @@ public class ClientDaoDB implements ClientDao{
     @Override
     public boolean deleteClientById(int clientId) {
         try(Connection conn = ConnectionUtil.createConnection()){
+
             String sql = "delete from client where clientId=?";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, clientId);
-            ps.execute();
-            return true;
+            int deleted = ps.executeUpdate();
+            if (deleted == 1){
+                return true;
+            }
+            return false;
         }catch(SQLException sqlException){
             sqlException.printStackTrace();
             logger.error("Could not delete client:\n"+sqlException.getMessage());
