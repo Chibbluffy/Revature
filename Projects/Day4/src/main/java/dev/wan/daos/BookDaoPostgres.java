@@ -93,7 +93,6 @@ public class BookDaoPostgres implements BookDAO {
 
     @Override
     public Book updateBook(Book book) {
-
         try(Connection conn = ConnectionUtil.createConnection()){
             // sql using nice prepared statements
             // write a string and update the string directly with your values
