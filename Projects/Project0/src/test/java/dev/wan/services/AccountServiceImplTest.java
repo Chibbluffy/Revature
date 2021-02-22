@@ -1,5 +1,6 @@
 package dev.wan.services;
 
+import dev.wan.daos.AccountDaoDB;
 import dev.wan.daos.AccountDaoLocal;
 import dev.wan.entities.Account;
 import org.junit.jupiter.api.MethodOrderer;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountServiceImplTest {
-    private static AccountService as = new AccountServiceImpl(new AccountDaoLocal());
+    private static AccountService as = new AccountServiceImpl(new AccountDaoDB());
     private static Account testAccount = null;
 
     @Test
