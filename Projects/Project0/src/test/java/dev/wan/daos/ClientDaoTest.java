@@ -66,4 +66,12 @@ class ClientDaoTest {
         boolean result = cdao.deleteClientById(clientId);
         Assertions.assertTrue(result);
     }
+
+    @Test
+    @Order(6)
+    void delete_invalid_client_test(){
+        int clientId = 99999;
+        boolean result = cdao.deleteClientById(clientId);
+        Assertions.assertFalse(result);
+    }
 }
