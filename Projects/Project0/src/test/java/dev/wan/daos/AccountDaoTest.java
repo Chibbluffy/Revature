@@ -21,22 +21,26 @@ class AccountDaoTest {
         System.out.println(account1);
 
         Account account2 = new Account(0,1, "Savings");
-        adao.createAccount(account1);
-        System.out.println(account1);
+        adao.createAccount(account2);
+        System.out.println(account2);
 
         testAccount = account1;
 
         Assertions.assertNotEquals(0, account1.getAccountId());
-        Assertions.assertEquals(2, account2.getAccountId());
+        Assertions.assertTrue(1 < account2.getAccountId());
         logger.info("Created account in test");
     }
 
     @Test
     @Order(2)
     void get_accounts_by_client_id_test(){
-        int clientId = testAccount.getClientId();
+//        int clientId = testAccount.getClientId();
+        int clientId = 1;
 
         Set<Account> allAccounts = adao.getAccountsByClientId(clientId);
+        for(Account a: allAccounts){
+            System.out.println(a);
+        }
         Assertions.assertTrue(allAccounts.size() >= 2);
     }
 
