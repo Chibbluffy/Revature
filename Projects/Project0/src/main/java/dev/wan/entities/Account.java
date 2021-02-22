@@ -52,6 +52,8 @@ public class Account {
         return "Account{" +
                 "accountId=" + accountId +
                 ", clientId=" + clientId +
+                ", accountType='" + accountType + '\'' +
+                ", balance=" + balance +
                 '}';
     }
 }

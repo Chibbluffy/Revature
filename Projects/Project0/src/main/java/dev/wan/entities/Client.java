@@ -68,4 +68,16 @@ public class Client {
     public void setCreditScore(int creditScore) {
         this.creditScore = creditScore;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthYear=" + birthYear +
+                ", numberOfAccounts=" + numberOfAccounts +
+                ", creditScore=" + creditScore +
+                '}';
+    }
 }
