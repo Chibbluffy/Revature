@@ -15,30 +15,39 @@ public class AccountDaoDB implements AccountDao{
     public Account createAccount(Account account) {
         try(Connection conn = ConnectionUtil.createConnection()){
             int clientId = account.getClientId();
+            System.out.println(clientId);
             // Get client current numAccounts
-            String sql = "select * from client where clientId = ?;";
-            PreparedStatement ps1 = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps1.setInt(1,clientId);
-            ResultSet rs1 = ps1.getGeneratedKeys();
-            rs1.next();
-            int accountId = rs1.getInt("numberOfAccounts") + 1;
+            String sql = "select * from client where clientId=?";
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, clientId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int accountId = rs.getInt("numberOfAccounts") + 1;
+            account.setAccountId(accountId);
             // update client
             sql = "update client set numberOfAccounts=? where clientId=?";
-            PreparedStatement ps2 = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps2.setInt(1, clientId);
-            ps2.setInt(2, accountId);
-            ps2.execute();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, accountId);
+            ps.setInt(2, clientId);
+            int updated = ps.executeUpdate();
+            if (updated > 0){
+                logger.info("Client numberOfAccounts was successfully updated for new account creation");
+            }else{
+                logger.error("Client numberOfAccounts was NOT updated");
+            }
             // Create Account
-            sql = "insert into account (client_id, account_id, account_type, balance) values (?,?,?,?);";
-            PreparedStatement ps3 = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps3.setInt(1, account.getClientId());
-            ps3.setInt(2, account.getAccountId());
-            ps3.setString(3, account.getAccountType());
-            ps3.setFloat(4, account.getBalance());
-            ps3.execute();
-
-            ResultSet rs3 = ps3.getGeneratedKeys();
-            rs3.next();
+            sql = "insert into account (clientId, accountId, accountType, balance) values (?,?,?,?);";
+            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, account.getClientId());
+            ps.setInt(2, account.getAccountId());
+            ps.setString(3, account.getAccountType());
+            ps.setFloat(4, account.getBalance());
+            updated = ps.executeUpdate();
+            if (updated > 0){
+                logger.info("Account was successfully created");
+            }else{
+                logger.error("Account was not created");
+            }
             return account;
 
         }catch(SQLException sqlException){
@@ -55,8 +64,8 @@ public class AccountDaoDB implements AccountDao{
             String sql = "select * from account where clientId = ?;";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
+            ResultSet rs = ps.executeQuery();
+//            rs.next();
             while(rs.next()){
                 Account account = new Account();
                 account.setClientId(rs.getInt("clientId"));
