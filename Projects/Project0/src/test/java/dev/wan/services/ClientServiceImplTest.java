@@ -20,4 +20,12 @@ class ClientServiceImplTest {
         Assertions.assertNotEquals(0, client.getId());
         Assertions.assertEquals(0, client.getNumberOfAccounts());
     }
+
+    @Test
+    @Order(2)
+    void update_client_test(){
+        Client client = new Client(0,"Thomas","Wan",1996,850);
+        client = cs.updateClient(client);
+        Assertions.assertEquals("Thomas",client.getFirstName());
+    }
 }
