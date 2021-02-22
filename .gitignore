@@ -1,12 +1,15 @@
 # Compiled class file
-*.class
+**/*.class
 
 # bin/lock files
-*.bin
-*.lock
+**/*.bin
+**/*.lock
 
 # Log file
-*.log
+**.log
+
+# Test generated files
+**/build/**
 
 # BlueJ files
 *.ctxt
