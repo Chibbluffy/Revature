@@ -1,0 +1,38 @@
+#JavaScript
+- The programming language that every browser uses
+	- front end languages
+		- JS
+		- JS
+		- JS
+- JS has a lot of weird quirks and rules
+- Brendan Eich developed the language in about 9 days
+	- Java VS JavaScript
+		- Java
+			- Ham
+			- Strongly and statically typed
+			- Compiled
+			- Server-side 
+			- Scalability
+			- OOP
+			- Access Modifiers
+			- Multi-threaded
+			- No Global Scope
+			- Automatic memory management
+			- Pass By Value
+			- Java 8 
+			- Controlled by Oracle
+		- Javascript
+			- Hamster
+			- Dynamic and loosely typed
+			- Interpreted
+			- Client-side (node.js is a backend for JS)
+			- Flexibility
+			- Mostly Functional (multi-paradigm) (cake salad)
+			- No Access Modifiers
+			- Asynchronous 
+			- Has Global Scope
+			- Automatic memory management
+			- Pass By Value (finer points with objects)
+			- ES6
+			- Language implementation of EcmaScript
+			- 
