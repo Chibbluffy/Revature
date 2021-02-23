@@ -1,7 +1,7 @@
 package dev.wan.entities;
 
 public class Client {
-    int id;
+    int clientId;
     String firstName;
     String lastName;
     int birthYear;
@@ -12,8 +12,8 @@ public class Client {
     public Client() {
     }
 
-    public Client(int id, String firstName, String lastName, int birthYear, int creditScore) {
-        this.id = id;
+    public Client(int clientId, String firstName, String lastName, int birthYear, int creditScore) {
+        this.clientId = clientId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthYear = birthYear;
@@ -21,12 +21,12 @@ public class Client {
         this.creditScore = creditScore;
     }
 
-    public int getId() {
-        return id;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public String getFirstName() {
@@ -72,7 +72,7 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
+                "clientId=" + clientId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthYear=" + birthYear +

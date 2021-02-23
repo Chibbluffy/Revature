@@ -14,8 +14,8 @@ public class ClientDaoLocal implements ClientDao{
 
     @Override
     public Client createClient(Client client) {
-        client.setId(++idMaker);
-        clientTable.put(client.getId(),client);
+        client.setClientId(++idMaker);
+        clientTable.put(client.getClientId(),client);
         return client;
     }
 
@@ -32,7 +32,7 @@ public class ClientDaoLocal implements ClientDao{
 
     @Override
     public Client updateClient(Client client) {
-        return clientTable.put(client.getId(),client);
+        return clientTable.put(client.getClientId(),client);
     }
 
     @Override

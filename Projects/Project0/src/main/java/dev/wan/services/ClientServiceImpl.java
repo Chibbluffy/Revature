@@ -17,9 +17,8 @@ public class ClientServiceImpl implements ClientService{
     @Override
     public Client registerClient(Client client) {
         client.setNumberOfAccounts(0);
-        this.clientDao.createClient(client);
-        logger.info("Registered new client!");
-        return client;
+        logger.info("Registering new client!");
+        return this.clientDao.createClient(client);
     }
 
     @Override
@@ -34,8 +33,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public Client updateClient(Client client) {
-        this.clientDao.updateClient(client);
-        return client;
+        return this.clientDao.updateClient(client);
     }
 
     @Override

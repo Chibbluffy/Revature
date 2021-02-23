@@ -20,6 +20,7 @@ public class AccountController {
         String accountJSON = ctx.body();
         Account account = gson.fromJson(accountJSON,  Account.class);
         this.accountService.registerAccount(account);
+
         ctx.result("New account created!\n" + accountJSON);
         ctx.status(201);
     };

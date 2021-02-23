@@ -20,6 +20,7 @@ public class ClientController {
         String clientJSON = ctx.body();
         Client client = gson.fromJson(clientJSON, Client.class);
         this.clientService.registerClient(client);
+        clientJSON = gson.toJson(client);
         ctx.result("New client registered!\n" + clientJSON);
         ctx.status(201);
     };
@@ -54,11 +55,24 @@ public class ClientController {
         }
     };
     // PUT /clients/:id
-    // clientController.updateClientHandler);      // 200/404
+    // 200/404
     public Handler updateClientHandler = (ctx) -> {
-
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        if (id != 0){
+            String clientJSON = ctx.body();
+            Client client = gson.fromJson(clientJSON, Client.class);
+            this.clientService.updateClient(client);
+            clientJSON = gson.toJson(client);
+            ctx.result("Client updated!\n" + clientJSON);
+            ctx.status(200);
+        }
+        else{
+            ctx.result("Client could not be updated.");
+            ctx.status(404);
+        }
     };
-    //        app.delete("clients/:id", clientController.deleteClientHandler);    // 200/404
+    // DELETE clients/:id
+    // 200/404
     public Handler deleteClientHandler = (ctx) -> {
         int id = Integer.parseInt(ctx.pathParam("id"));
         if (id != 0) {
@@ -74,7 +88,7 @@ public class ClientController {
         }
         else {
             ctx.result("Client not found.");
-            ctx.status(204);
+            ctx.status(404);
         }
     };
 }

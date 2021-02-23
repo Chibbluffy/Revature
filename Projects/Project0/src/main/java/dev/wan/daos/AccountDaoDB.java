@@ -65,7 +65,6 @@ public class AccountDaoDB implements AccountDao{
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-//            rs.next();
             while(rs.next()){
                 Account account = new Account();
                 account.setClientId(rs.getInt("clientId"));
@@ -90,8 +89,7 @@ public class AccountDaoDB implements AccountDao{
             ps.setInt(1, id);
             ps.setFloat(2, balanceMin);
             ps.setFloat(3, balanceMax);
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
+            ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Account account = new Account();
                 account.setClientId(rs.getInt("clientId"));
@@ -109,27 +107,60 @@ public class AccountDaoDB implements AccountDao{
 
     @Override
     public Account getAccountByIds(int clientId, int accountId) {
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "select * from account where clientId = ? and accountId = ?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, clientId);
+            ps.setFloat(2, accountId);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            Account account = new Account();
+            account.setClientId(rs.getInt("clientId"));
+            account.setAccountId(rs.getInt("accountId"));
+            account.setBalance(rs.getFloat("balance"));
+            account.setAccountType(rs.getString("accountType"));
+            return account;
+        }catch(SQLException sqlException){
+            sqlException.printStackTrace();
+            logger.error("unable to get account");
+        }
         return null;
     }
 
     @Override
     public Account updateAccount(Account account) {
+        try (Connection conn = ConnectionUtil.createConnection()) {
+            String sql = "update account set balance=? where clientId=? and accountId=?";
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1, account.getBalance());
+            ps.setInt(2, account.getClientId());
+            ps.setInt(3, account.getAccountId());
+            if(ps.executeUpdate() > 0){
+                return account;
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            logger.error("Could not update account:\n" + sqlException.getMessage());
+        }
         return null;
     }
 
     @Override
     public boolean deleteAccountByIds(int clientId, int accountId) {
-        return false;
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "delete from account where clientId=? and accountId=?";
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, clientId);
+            ps.setInt(2, accountId);
+            int deleted = ps.executeUpdate();
+            if (deleted > 0){
+                return true;
+            }
+            return false;
+        }catch(SQLException sqlException){
+            sqlException.printStackTrace();
+            logger.error("Could not delete account:\n"+sqlException.getMessage());
+            return false;
+        }
     }
-
-    /*
-create table account(
-	account_number int,
-	account_type varchar(50),
-	balance float,
-	client_id int,
-	constraint fk_client_id foreign key (client_id) references client(client_id),
-	constraint account_num_limit check (account_number <= client(numberOfAccounts))
-);
-     */
 }

@@ -24,7 +24,7 @@ public class ClientDaoDB implements ClientDao{
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
             int clientId = rs.getInt("clientId");
-            client.setId(clientId);
+            client.setClientId(clientId);
             return client;
 
         }catch(SQLException sqlException){
@@ -44,7 +44,7 @@ public class ClientDaoDB implements ClientDao{
             rs.next();
             while(rs.next()){
                 Client client = new Client();
-                client.setId(rs.getInt("clientId"));
+                client.setClientId(rs.getInt("clientId"));
                 client.setFirstName(rs.getString("firstName"));
                 client.setLastName(rs.getString("lastName"));
                 client.setBirthYear(rs.getInt("birthYear"));
@@ -70,7 +70,7 @@ public class ClientDaoDB implements ClientDao{
             rs.next();
 
             Client client = new Client();
-            client.setId(rs.getInt("clientId"));
+            client.setClientId(rs.getInt("clientId"));
             client.setFirstName(rs.getString("firstName"));
             client.setLastName(rs.getString("lastName"));
             client.setBirthYear(rs.getInt("birthYear"));
@@ -94,7 +94,7 @@ public class ClientDaoDB implements ClientDao{
             ps.setInt(3, client.getBirthYear());
             ps.setInt(4, client.getNumberOfAccounts());
             ps.setInt(5, client.getCreditScore());
-            ps.setInt(6, client.getId());
+            ps.setInt(6, client.getClientId());
             ps.execute();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();

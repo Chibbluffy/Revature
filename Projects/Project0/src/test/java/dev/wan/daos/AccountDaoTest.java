@@ -34,13 +34,9 @@ class AccountDaoTest {
     @Test
     @Order(2)
     void get_accounts_by_client_id_test(){
-//        int clientId = testAccount.getClientId();
-        int clientId = 1;
-
+        int clientId = testAccount.getClientId();
         Set<Account> allAccounts = adao.getAccountsByClientId(clientId);
-        for(Account a: allAccounts){
-            System.out.println(a);
-        }
+
         Assertions.assertTrue(allAccounts.size() >= 2);
     }
 
@@ -48,11 +44,11 @@ class AccountDaoTest {
     @Order(3)
     void get_account_by_ids_test(){
         int clientId = testAccount.getClientId();
-        int accountId = testAccount.getAccountId();;
+        int accountId = testAccount.getAccountId();
+        System.out.println(clientId);
+        System.out.println(accountId);
         Account account = adao.getAccountByIds(clientId, accountId);
-        Assertions.assertEquals(1, clientId);
         Assertions.assertEquals(clientId, account.getClientId());
-        Assertions.assertEquals(1, accountId);
         Assertions.assertEquals(accountId, account.getAccountId());
     }
 
@@ -60,11 +56,11 @@ class AccountDaoTest {
     @Order(4)
     void update_account_test(){
         Account account = adao.getAccountByIds(testAccount.getClientId(), testAccount.getAccountId());
-        account.setAccountType("Savings");
+        account.setBalance(999.99f);
         adao.updateAccount(account);
 
         Account updatedAccount = adao.getAccountByIds(testAccount.getClientId(), testAccount.getAccountId());
-        Assertions.assertEquals("Savings", updatedAccount.getAccountType());
+        Assertions.assertEquals(999.99f, updatedAccount.getBalance());
     }
 
     @Test
