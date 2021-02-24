@@ -115,33 +115,47 @@ its own version of push and pop. You can also get by index
 
 // 1.
 function myArray(){
-    this.array = [],
+    this.size = 0,
+    this.print = function(){
+        for (let i = 0; i < this.size; i++){
+            console.log(this[i]);
+        }
+    },
     this.push = function(item){
-        this.array.push(item)
+        this[this.size] = item;
+        this.size++;
     },
     this.pop = function(){
-        this.array.pop()
+        this[this.size-1] = undefined;
+        this.size--;
     }
 }
 console.log("\n1.")
 let newArray = new myArray()
+newArray.push(5);
+newArray.push(10);
+newArray.push(15);
+newArray.print();
+newArray.pop();newArray.pop();newArray.pop()
+newArray.print();
 
 
 // 2. 
 function ConstantCar () {
-    this.miles = 0,
+    this.__miles = 0,
     this.drive = function(miles){
-        this.miles += miles
+        this.__miles += miles
     },
     this.showMiles = function(){
-        console.log(`Your car has driven ${this.miles} miles`)
+        console.log(`Your car has driven ${this.__miles} miles`)
     },
     this.milesDriven = function(){
-        return(this.miles)
+        return(this.__miles)
     }
 }
 console.log("\n2.")
-let newCar = new ConstantCar(1337)
+let newNewCar = new ConstantCar(1337)
 newCar.showMiles()
+newCar.__miles = 9999
 newCar.drive(1337)
 newCar.showMiles()
