@@ -35,4 +35,9 @@
 			- Pass By Value (finer points with objects)
 			- ES6
 			- Language implementation of EcmaScript
-			- 
+
+#DOM
+- Document Object Model
+	- Tree of elements making up a webpage
+- This is what JavaScript was created for
+- 
