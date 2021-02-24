@@ -14,5 +14,4 @@ public interface AccountService {
     Account updateAccount(Account account);
 
     boolean deleteAccountByIds(int clientId, int accountId);
-
 }
