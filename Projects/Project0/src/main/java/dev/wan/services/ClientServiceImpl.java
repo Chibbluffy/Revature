@@ -38,9 +38,6 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public boolean deleteClientById(int id) {
-        if(this.clientDao.getClientById(id) == null){
-            return false;
-        }
         return this.clientDao.deleteClientById(id);
     }
 }
