@@ -73,6 +73,7 @@ public class AccountDaoDB implements AccountDao{
                 account.setAccountType(rs.getString("accountType"));
                 allAccounts.add(account);
             }
+            logger.info("Get all accounts of client "+id);
         }catch(SQLException sqlException){
             sqlException.printStackTrace();
             logger.error("unable to get all accounts of client "+id);
@@ -98,9 +99,10 @@ public class AccountDaoDB implements AccountDao{
                 account.setAccountType(rs.getString("accountType"));
                 allAccounts.add(account);
             }
+            logger.info("Get all filtered accounts of client "+id);
         }catch(SQLException sqlException){
             sqlException.printStackTrace();
-            logger.error("unable to get all accounts of client "+id);
+            logger.error("unable to get all filtered accounts of client "+id);
         }
         return allAccounts;
     }
@@ -119,6 +121,7 @@ public class AccountDaoDB implements AccountDao{
             account.setAccountId(rs.getInt("accountId"));
             account.setBalance(rs.getFloat("balance"));
             account.setAccountType(rs.getString("accountType"));
+            logger.info("Get account "+accountId+" of client "+clientId);
             return account;
         }catch(SQLException sqlException){
             sqlException.printStackTrace();
@@ -138,6 +141,7 @@ public class AccountDaoDB implements AccountDao{
             ps.setInt(2, account.getClientId());
             ps.setInt(3, account.getAccountId());
             if(ps.executeUpdate() > 0){
+                logger.info("Updated account "+account.getAccountId()+" from client "+account.getClientId());
                 return account;
             }
         } catch (SQLException sqlException) {
@@ -156,6 +160,7 @@ public class AccountDaoDB implements AccountDao{
             ps.setInt(2, accountId);
             int deleted = ps.executeUpdate();
             if (deleted > 0){
+                logger.info("Deleted account "+accountId+" from client "+clientId);
                 return true;
             }
             return false;

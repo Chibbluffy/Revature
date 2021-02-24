@@ -24,9 +24,9 @@ dev/wan/controllers/ClientController.java
  dev.wan.controllers.ClientController
 dev/wan/services/AccountServiceImpl.java
  dev.wan.services.AccountServiceImpl
-dev/wan/controllers/AccountController.java
- dev.wan.controllers.AccountController
 dev/wan/app/App.java
  dev.wan.app.App
+dev/wan/controllers/AccountController.java
+ dev.wan.controllers.AccountController
 dev/wan/daos/AccountDaoDB.java
  dev.wan.daos.AccountDaoDB
