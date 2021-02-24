@@ -1,11 +1,11 @@
-dev/wan/services/AccountService.java
- dev.wan.services.AccountService
-dev/wan/daos/ClientDaoDB.java
- dev.wan.daos.ClientDaoDB
-dev/wan/controllers/AccountController.java
- dev.wan.controllers.AccountController
-dev/wan/services/AccountServiceImpl.java
- dev.wan.services.AccountServiceImpl
+dev/wan/daos/ClientDaoLocal.java
+ dev.wan.daos.ClientDaoLocal
+dev/wan/services/ClientServiceImpl.java
+ dev.wan.services.ClientServiceImpl
+dev/wan/services/ClientService.java
+ dev.wan.services.ClientService
+dev/wan/entities/Account.java
+ dev.wan.entities.Account
 dev/wan/entities/Client.java
  dev.wan.entities.Client
 dev/wan/daos/ClientDao.java
@@ -16,17 +16,17 @@ dev/wan/daos/AccountDao.java
  dev.wan.daos.AccountDao
 dev/wan/utils/ConnectionUtil.java
  dev.wan.utils.ConnectionUtil
-dev/wan/services/ClientServiceImpl.java
- dev.wan.services.ClientServiceImpl
+dev/wan/services/AccountService.java
+ dev.wan.services.AccountService
+dev/wan/daos/ClientDaoDB.java
+ dev.wan.daos.ClientDaoDB
 dev/wan/controllers/ClientController.java
  dev.wan.controllers.ClientController
-dev/wan/entities/Account.java
- dev.wan.entities.Account
+dev/wan/services/AccountServiceImpl.java
+ dev.wan.services.AccountServiceImpl
+dev/wan/controllers/AccountController.java
+ dev.wan.controllers.AccountController
 dev/wan/app/App.java
  dev.wan.app.App
-dev/wan/services/ClientService.java
- dev.wan.services.ClientService
 dev/wan/daos/AccountDaoDB.java
  dev.wan.daos.AccountDaoDB
-dev/wan/daos/ClientDaoLocal.java
- dev.wan.daos.ClientDaoLocal

@@ -18,11 +18,9 @@ class AccountDaoTest {
     void create_account_test(){
         Account account1 = new Account(0,1, "Checkings");
         adao.createAccount(account1);
-        System.out.println(account1);
 
         Account account2 = new Account(0,1, "Savings");
         adao.createAccount(account2);
-        System.out.println(account2);
 
         testAccount = account1;
 
@@ -45,9 +43,8 @@ class AccountDaoTest {
     void get_account_by_ids_test(){
         int clientId = testAccount.getClientId();
         int accountId = testAccount.getAccountId();
-        System.out.println(clientId);
-        System.out.println(accountId);
         Account account = adao.getAccountByIds(clientId, accountId);
+
         Assertions.assertEquals(clientId, account.getClientId());
         Assertions.assertEquals(accountId, account.getAccountId());
     }
@@ -58,9 +55,21 @@ class AccountDaoTest {
         Account account = adao.getAccountByIds(testAccount.getClientId(), testAccount.getAccountId());
         account.setBalance(999.99f);
         adao.updateAccount(account);
-
         Account updatedAccount = adao.getAccountByIds(testAccount.getClientId(), testAccount.getAccountId());
+
         Assertions.assertEquals(999.99f, updatedAccount.getBalance());
+    }
+
+    @Test
+    @Order(5)
+    void update_account_type_does_not_change_test(){
+        Account account = adao.getAccountByIds(testAccount.getClientId(), testAccount.getAccountId());
+        String oldAccountType = account.getAccountType();
+        account.setAccountType("garbage");
+        adao.updateAccount(account);
+        Account updatedAccount = adao.getAccountByIds(testAccount.getClientId(), testAccount.getAccountId());
+
+        Assertions.assertEquals(oldAccountType, updatedAccount.getAccountType());
     }
 
     @Test
@@ -68,6 +77,7 @@ class AccountDaoTest {
     void delete_account_by_ids(){
         int clientId = testAccount.getClientId();
         int accountId = testAccount.getAccountId()+1;
+
         boolean result = adao.deleteAccountByIds(clientId,accountId);
         Assertions.assertTrue(result);
     }

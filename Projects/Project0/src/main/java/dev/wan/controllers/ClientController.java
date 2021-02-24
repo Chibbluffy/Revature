@@ -19,8 +19,10 @@ public class ClientController {
     public Handler createClientHandler = (ctx) -> {
         String clientJSON = ctx.body();
         Client client = gson.fromJson(clientJSON, Client.class);
+
         this.clientService.registerClient(client);
         clientJSON = gson.toJson(client);
+
         ctx.result("New client registered!\n" + clientJSON);
         ctx.status(201);
     };
@@ -30,6 +32,7 @@ public class ClientController {
     public Handler getAllClientsHandler = (ctx) -> {
         Set<Client> allClients = this.clientService.getAllClients();
         String clientsJSON = gson.toJson(allClients);
+
         if (clientsJSON != null){
             ctx.result(clientsJSON);
             ctx.status(200);
@@ -39,12 +42,14 @@ public class ClientController {
             ctx.status(404);
         }
     };
+
     // GET /clients/:id
     // => 200/404
     public Handler getClientByIdHandler = (ctx) -> {
         int id = Integer.parseInt(ctx.pathParam("id"));
-        if (id != 0){
-            Client client = this.clientService.getClientById(id);
+        Client client = this.clientService.getClientById(id);
+
+        if (client != null){
             String clientJSON = gson.toJson(client);
             ctx.result(clientJSON);
             ctx.status(200);
@@ -54,15 +59,18 @@ public class ClientController {
             ctx.status(404);
         }
     };
+
     // PUT /clients/:id
     // 200/404
     public Handler updateClientHandler = (ctx) -> {
         int id = Integer.parseInt(ctx.pathParam("id"));
-        if (id != 0){
-            String clientJSON = ctx.body();
-            Client client = gson.fromJson(clientJSON, Client.class);
-            this.clientService.updateClient(client);
-            clientJSON = gson.toJson(client);
+        String clientJSON = ctx.body();
+        Client client = gson.fromJson(clientJSON, Client.class);
+        client.setClientId(id);
+        Client updatedClient = this.clientService.updateClient(client);
+
+        if (updatedClient != null){
+            clientJSON = gson.toJson(updatedClient);
             ctx.result("Client updated!\n" + clientJSON);
             ctx.status(200);
         }
@@ -75,19 +83,13 @@ public class ClientController {
     // 200/404
     public Handler deleteClientHandler = (ctx) -> {
         int id = Integer.parseInt(ctx.pathParam("id"));
-        if (id != 0) {
-            boolean deleted = this.clientService.deleteClientById(id);
-            if (deleted){
-                ctx.result("Client " + id + " was deleted.");
-                ctx.status(200);
-            }
-            else {
-                ctx.result("Client was not deleted.");
-                ctx.status(204);
-            }
+        boolean deleted = this.clientService.deleteClientById(id);
+        if (deleted){
+            ctx.result("Client " + id + " was deleted.");
+            ctx.status(200);
         }
         else {
-            ctx.result("Client not found.");
+            ctx.result("Client was not deleted.");
             ctx.status(404);
         }
     };

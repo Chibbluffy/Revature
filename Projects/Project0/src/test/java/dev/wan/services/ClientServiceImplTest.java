@@ -17,15 +17,7 @@ class ClientServiceImplTest {
         Client client = new Client(0, "Tom", "Wan", 1996, 800);
         cs.registerClient(client);
 
-        Assertions.assertNotEquals(0, client.getId());
+        Assertions.assertNotEquals(0, client.getClientId());
         Assertions.assertEquals(0, client.getNumberOfAccounts());
-    }
-
-    @Test
-    @Order(2)
-    void update_client_test(){
-        Client client = new Client(0,"Thomas","Wan",1996,850);
-        client = cs.updateClient(client);
-        Assertions.assertEquals("Thomas",client.getFirstName());
     }
 }

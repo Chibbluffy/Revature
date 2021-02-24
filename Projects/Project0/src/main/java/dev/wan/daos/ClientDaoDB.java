@@ -95,7 +95,11 @@ public class ClientDaoDB implements ClientDao{
             ps.setInt(4, client.getNumberOfAccounts());
             ps.setInt(5, client.getCreditScore());
             ps.setInt(6, client.getClientId());
-            ps.execute();
+            int updated = ps.executeUpdate();
+            if (updated == 0){
+                logger.error("No clients were updated");
+                return null;
+            }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             logger.error("Could not get client:\n" + sqlException.getMessage());
@@ -107,18 +111,20 @@ public class ClientDaoDB implements ClientDao{
     @Override
     public boolean deleteClientById(int clientId) {
         try(Connection conn = ConnectionUtil.createConnection()){
-
             String sql = "delete from client where clientId=?";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, clientId);
+
             int deleted = ps.executeUpdate();
-            if (deleted == 1){
+            if (deleted > 0){
+                logger.info("Deleted client: " + clientId);
                 return true;
             }
+            logger.error("No clients deleted");
             return false;
         }catch(SQLException sqlException){
             sqlException.printStackTrace();
-            logger.error("Could not delete client:\n"+sqlException.getMessage());
+            logger.error("Could not delete client:\n" + sqlException.getMessage());
             return false;
         }
     }

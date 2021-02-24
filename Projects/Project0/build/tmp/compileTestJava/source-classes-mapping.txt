@@ -1,10 +1,8 @@
-dev/wan/utils/ConnectionUtilTest.java
- dev.wan.utils.ConnectionUtilTest
 dev/wan/daos/ClientDaoTest.java
  dev.wan.daos.ClientDaoTest
+dev/wan/utils/ConnectionUtilTest.java
+ dev.wan.utils.ConnectionUtilTest
 dev/wan/services/ClientServiceImplTest.java
  dev.wan.services.ClientServiceImplTest
-dev/wan/services/AccountServiceImplTest.java
- dev.wan.services.AccountServiceImplTest
 dev/wan/daos/AccountDaoTest.java
  dev.wan.daos.AccountDaoTest

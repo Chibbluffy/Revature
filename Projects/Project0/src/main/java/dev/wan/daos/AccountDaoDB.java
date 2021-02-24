@@ -130,6 +130,8 @@ public class AccountDaoDB implements AccountDao{
     @Override
     public Account updateAccount(Account account) {
         try (Connection conn = ConnectionUtil.createConnection()) {
+            Account oldAccount = getAccountByIds(account.getClientId(), account.getAccountId());
+            account.setAccountType(oldAccount.getAccountType());
             String sql = "update account set balance=? where clientId=? and accountId=?";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, account.getBalance());
