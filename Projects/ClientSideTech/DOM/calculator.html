@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CUSTOM CALC</h1>
+    <!-- 
+Create a calculator webpage
+input 2 diff numbers
+select an operation
+show result of operation
+
+list of history of operations/results
+*.value returns a STRING -->
+        <button onclick="additionalInput()">Add input box</button>
+        <div id="inputs">
+            <input id="num1"></br>
+            <input id="num2"><br/>
+        </div>
+        <button onclick="add()"     >+</button>
+        <button onclick="subtract()">-</button>
+        <button onclick="multiply()">*</button>
+        <button onclick="divide()"  >/</button>
+        <h3 id="resultField">0</h3>
+        <p id="calcHistory"></p>
+</body>
+<script>
+    const resultField = document.getElementById("resultField")
+    const history = document.getElementById("calcHistory")
+    const num1 = document.getElementById("num1")
+    // const num2 = document.getElementById("num2")
+    const inputs = document.getElementById("inputs")
+    let numInputs = 2
+    let num
+
+    function additionalInput(){
+        inputs.innerHTML = inputs.innerHTML + `<input id="num${++numInputs}"></br>`
+    }
+    function add(){
+        let result = parseInt(num1.value)
+        let r = `${num1.value}`
+        for (let i = 2; i < numInputs+1; i++){
+            num = document.getElementById(`num${i}`)
+            result = parseInt(result) + (parseInt(num.value))
+            r += `+${num.value}`
+        }
+        r += `=${result}`
+        console.log(r)
+        console.log(result)
+        updateResult(r)
+    }
+    function subtract(){
+        let result = parseInt(num1.value)
+        let r = `${num1.value}`
+        for (let i = 2; i < numInputs+1; i++){
+            num = document.getElementById(`num${i}`)
+            result = parseInt(result) - (parseInt(num.value))
+            r += `-${num.value}`
+        }
+        r += `=${result}`
+        updateResult(r)
+    }
+    function multiply(){
+        let result = parseInt(num1.value)
+        let r = `${num1.value}`
+        for (let i = 2; i < numInputs+1; i++){
+            num = document.getElementById(`num${i}`)
+            result = parseInt(result) * (parseInt(num.value))
+            r += `*${num.value}`
+        }
+        r += `=${result}`
+        updateResult(r)
+    }
+    function divide(){
+        let result = parseFloat(num1.value)
+        let r = `${num1.value}`
+        for (let i = 2; i < numInputs+1; i++){
+            num = document.getElementById(`num${i}`)
+            result = parseFloat(result) / parseFloat(num.value)
+            r += `/${num.value}`
+        }
+        r += `=${result}`
+        updateResult(r)
+    }
+    function updateResult(calculation){
+        history.innerHTML = `${resultField.innerText}</br>`+history.innerHTML
+        resultField.innerText = calculation
+        resetFields()
+    }
+    function resetFields(){
+        inputs.innerHTML = `<input id="num1"></br>
+            <input id="num2"><br/>`
+        numInputs = 2
+    }
+
+</script>
+</html>

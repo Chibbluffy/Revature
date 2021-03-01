@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery List</title>
+</head>
+<body>
+    <h1>BEST GROCERY STORE APP</h1>
+
+    <h3>Grocery List</h3>
+    <button onclick="addItem()">Add Item</button>
+    <input id="addInput" type="text">
+
+    <ul id="groceryList">
+
+    </ul>
+
+</body>
+<script>
+    let items = [];
+    const groceryList = document.getElementById("groceryList")
+
+    function addItem(){
+        const itemInput = document.getElementById("addInput"); // get input element
+        const item = itemInput.value;                           // get input value
+        items.push(item);                                       // add input value to list
+        let listHTML = '';
+        for (let i of items){
+            listHTML = listHTML + `<li>${i}</li>`;
+        }
+        groceryList.innerHTML = listHTML;
+    }
+
+
+</script>
+</html>
