@@ -1,8 +1,10 @@
 dev/wan/servicetests/SearchByTitleTests.java
  dev.wan.servicetests.SearchByTitleTests
-dev/wan/servicetests/BookServiceTests.java
- dev.wan.servicetests.BookServiceTests
-dev/wan/daotests/BookDaoTest.java
- dev.wan.daotests.BookDaoTest
 dev/wan/utiltests/ConnectionTest.java
  dev.wan.utiltests.ConnectionTest
+dev/wan/daotests/BookDaoTest.java
+ dev.wan.daotests.BookDaoTest
+dev/wan/servicetests/BookServiceTests.java
+ dev.wan.servicetests.BookServiceTests
+dev/wan/utiltests/JwtTests.java
+ dev.wan.utiltests.JwtTests

@@ -1,11 +1,13 @@
 package dev.wan.controllers;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.gson.Gson;
 import dev.wan.daos.BookDaoLocal;
 import dev.wan.daos.BookDaoPostgres;
 import dev.wan.entities.Book;
 import dev.wan.services.BookService;
 import dev.wan.services.BookServiceImpl;
+import dev.wan.utils.JwtUtil;
 import io.javalin.http.Handler;
 
 import java.util.Set;
@@ -71,12 +73,22 @@ public class BookController {
 
     public Handler deleteBookHandler = (ctx) -> {
         int id = Integer.parseInt(ctx.pathParam("id"));
-        boolean deleted = this.bookService.deleteBookById(id);
-        if (deleted){
-            ctx.result("Book " + id + " deleted:");
-        }
-        else {
-            ctx.result("Book " + id + " was NOT deleted");
+
+        String jwt = ctx.header("Authorization");
+        DecodedJWT decodedJWT = JwtUtil.isValidJWT(jwt);
+        // null if invalid
+
+        if (decodedJWT != null && decodedJWT.getClaim("role").asString().equals("Manager")){
+
+            boolean deleted = this.bookService.deleteBookById(id);
+            if (deleted) {
+                ctx.result("Book " + id + " deleted:");
+            } else {
+                ctx.result("Book " + id + " was NOT deleted");
+            }
+        }else {
+            ctx.status(403);
+            ctx.result("User not authorized to delete books");
         }
     };
 

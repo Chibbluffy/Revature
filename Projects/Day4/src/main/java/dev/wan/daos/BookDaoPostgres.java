@@ -47,7 +47,6 @@ public class BookDaoPostgres implements BookDAO {
             String sql = "select * from book";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
-            rs.next(); // gets first actual book/moves cursor
 
             while(rs.next()) {
                 Book book = new Book();

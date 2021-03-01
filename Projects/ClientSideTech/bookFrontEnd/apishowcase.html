@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Showcase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+        body{
+            background-image: url(https://tax.thomsonreuters.com/site/wp-content/images/map/World_Map.jpg);
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            gap: 0px 0px;
+            grid-template-areas:
+                ". infotable infotable ."
+                ". . . ."
+                ". . . ."
+                ". . . .";
+        }
+
+        .ip-div { grid-area: ip-div; }
+
+        .infotable { grid-area: infotable; }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <!-- <div class="ip-div"> -->
+        <div>
+            <div class="p-3 mb-2 bg-primary text-white">
+                <label for="inputIP">Input an IP address, or leave blank for your current IP address</label>
+            </div>
+            <!-- <label for="inputIP">Input an IP address, or leave blank for your current IP address</label> -->
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">IP</span>
+                <input id="inputIP" type="text" placeholder="0.0.0.0" class="form-control" >   
+
+                <!-- <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping"> -->
+            </div>
+            <!-- <input id="inputIP" type="text" placeholder="0.0.0.0">    -->
+            <button onclick="getIpInfo()" type="button" class="btn btn-success">Find</button> 
+        </div>
+        <div class="infotable">
+            <table class="table table-dark">
+                <thead><th>Info</th><th>Details</th></thead>
+                <tbody id="detailsDisplay">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script>
+    const inputIP = document.getElementById("inputIP")
+
+    async function getIpInfo(){
+        const ipAddr = inputIP.value
+        // backup plan lol
+        // const httpResponse = await fetch(`https://www.dnd5eapi.co/api/classes`)
+        if (ipAddr.toLowerCase().includes("adam")){
+            detailsDisplay.innerHTML = `<tr><td>HELLO ADAM :)</td></tr>`
+        }
+        else{
+            const httpResponse = await fetch(`http://ip-api.com/json/${ipAddr}?fields=status,message,continent,country,regionName,city,isp,query,lat,lon`)
+            const responseJSON = await httpResponse.json()
+            
+            ipHTML = `
+                    <tr>
+                        <td>IP Address</td>
+                        <td>${responseJSON.query}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>${responseJSON.city}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>${responseJSON.regionName}</td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>${responseJSON.country}</td>
+                    </tr>
+                    <tr>
+                        <td>Continent</td>
+                        <td>${responseJSON.continent}</td>
+                    </tr>
+                    <tr>
+                        <td>ISP</td>
+                        <td>${responseJSON.isp}</td>
+                    </tr>
+                    <tr>
+                        <td>Distance from Adam</td>
+                        <td>${calculateDistance(responseJSON.lat, responseJSON.lon).toFixed(1)} Miles</td>
+                    </tr>
+
+            `
+            
+            detailsDisplay.innerHTML = ipHTML
+            console.log(responseJSON)
+        }
+        
+    }
+    function calculateDistance(latitude2, longitude2){
+        let latitude1 = 38.9537323 // N
+        let longitude1 = -77.3507578// W
+        let earthRadius = 6371; // Radius of the earth in km
+        let dLat = degToRad(latitude2-latitude1);  // degToRad below
+        let dLon = degToRad(longitude2-longitude1); 
+        let a = 
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(degToRad(latitude1)) * Math.cos(degToRad(latitude2)) * 
+            Math.sin(dLon/2) * Math.sin(dLon/2)
+            ; 
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        let d = earthRadius * c; 
+        let miles = d / 1.609344; 
+        return miles
+    }
+    function degToRad(degrees) {
+        return degrees * (Math.PI / 180);
+    };
+
+
+    var endpoint = 'http://ip-api.com/json/';
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            if(response.status !== 'success') {
+                console.log('query failed: ' + response.message);
+                return
+            }
+            console.log(response)
+        }
+    };
+    xhr.open('GET', endpoint, true);
+    xhr.send();
+
+</script>
+</html>

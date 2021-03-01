@@ -6,8 +6,8 @@ dev/wan/services/BookServiceImpl.java
  dev.wan.services.BookServiceImpl
 dev/wan/services/BookService.java
  dev.wan.services.BookService
-dev/wan/app/App.java
- dev.wan.app.App
+dev/wan/utils/JwtUtil.java
+ dev.wan.utils.JwtUtil
 dev/wan/utils/ConnectionUtil.java
  dev.wan.utils.ConnectionUtil
 dev/wan/daos/BookDAO.java
@@ -16,3 +16,7 @@ dev/wan/daos/BookDaoPostgres.java
  dev.wan.daos.BookDaoPostgres
 dev/wan/controllers/BookController.java
  dev.wan.controllers.BookController
+dev/wan/controllers/LoginController.java
+ dev.wan.controllers.LoginController
+dev/wan/app/App.java
+ dev.wan.app.App

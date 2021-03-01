@@ -1,13 +1,19 @@
 package dev.wan.app;
 
 import dev.wan.controllers.BookController;
+import dev.wan.controllers.LoginController;
 import io.javalin.Javalin;
 
 public class App {
     public static void main(String[] args) {
-        Javalin app = Javalin.create();
+        Javalin app = Javalin.create(
+                javalinConfig -> {
+                    javalinConfig.enableCorsForAllOrigins();
+                }
+        );
 
         BookController bookController = new BookController();
+        LoginController loginController = new LoginController();
 
         // GET /books => return all books
         // GET /books?titleContains=Harry => only returns books containing that title
@@ -25,6 +31,9 @@ public class App {
         // DELETE /books/12 => delete book 12
         app.delete("/books/:id", bookController.deleteBookHandler);
 
+        // POST /users/login
+        // login controller
+        app.post("/users/login", loginController.loginHandler);
 
         // starts the webserver
         app.start();

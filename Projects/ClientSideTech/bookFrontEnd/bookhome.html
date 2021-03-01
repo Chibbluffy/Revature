@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books books and more books</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1.7fr 1.2fr 0.1fr;
+        grid-template-rows: 0.5fr 1.5fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+          "header header header header"
+          "bookTable bookTable createBook ."
+          ". . . .";
+      }
+      
+      .bookTable { grid-area: bookTable; }
+      
+      .createBook { grid-area: createBook; }
+      
+      .header { grid-area: header; }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="header">
+            <h1 class="display-3">Library Book Manager</h1>
+        </div>
+        <div class="bookTable">
+            <!-- <button onclick="getAllBooks()">Get All Books</button> -->
+            <table class="table table-dark">
+                <thead><th>id</th><th>Title</th><th>Author</th><th>Available</th></thead>
+                <tbody id="bookDisplay">
+
+                </tbody>
+            </table>
+        
+        </div>
+        <div class="createBook">
+            <h2 class="display-5">Add a new book</h2>
+
+            <label for="titleInput">Title</label>
+            <input placeholder="Ex Ender's Game" id="titleInput" type="text">
+            <hr>
+
+            <label for="authorInput">Author</label>
+            <input placeholder="Ex Tom" id="authorInput" type="text">
+            <hr>
+
+            <label for="conditionInput">Condition</label>
+            <input placeholder="Ex 1" id="conditionInput" type="number">
+            <hr>
+
+            <button onclick="addBook()">Add Book</button>
+        </div>
+    </div>
+</body>
+<script>
+    const bookDisplay = document.getElementById("bookDisplay")
+
+    async function getAllBooks(){
+        const httpResponse = await fetch("http://localhost:7000/books")
+        const body = await httpResponse.json(); // automatically parses the text into an object
+        let bookHTML = ``
+        console.log(body)
+        for (let element of body){
+            bookHTML += `
+                            <tr>
+                            <td>${element.bookId}</td>
+                            <td>${element.title}</td>
+                            <td>${element.author}</td>
+                            <td>${element.available ? "Available":"Unavailable"}</td>
+                            <td><button onclick="deleteBookById(${element.bookId}) type="button" class="btn btn-danger">Delete</button></td>
+                            </tr>`
+        }
+        bookDisplay.innerHTML = bookHTML
+    }
+
+    const titleInput = document.getElementById("titleInput")
+    const authorInput = document.getElementById("authorInput")
+    const conditionInput = document.getElementById("conditionInput")
+    async function addBook(){
+        
+        const book = {
+            bookId: 0,
+            title: titleInput.value,
+            author: authorInput.value,
+            condition: conditionInput.value,
+            available: true,
+            dueDate: 0
+        }
+        const details = {
+            method: "POST",
+            body: JSON.stringify(book)
+        }
+        const httpResponse = await fetch("http://localhost:7000/books", details)
+
+        if(httpResponse.status === 201){
+            alert("Book saved successfully")
+            getAllBooks()
+        }
+        else{
+            alert("Book not saved")
+        }
+    }
+
+    async function deleteBookById(id=0){
+        // const details = {
+        //     method: "DELETE",
+        //     headers:{
+        //         "Authorization":'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbXBsb3llZU5hbWUiOiJUb20iLCJyb2xlIjoiTWFuYWdlciJ9.JrdPMcv_iGOQv_1lA2wZl62bOX5GzVcreyed7iEedj0'
+        //     }
+        // }
+        const details = {
+            method: "DELETE",
+            headers:{
+                "Authorization":localStorage.getItem('jwt')
+            }
+        }
+        const httpResponse = await fetch(`http://localhost:7000/books/${id}`, details)
+        getAllBooks()
+    }
+
+    getAllBooks()
+
+    async function login(){
+        const details = {
+            method: "POST",
+
+
+        }
+        const httpResponse = await fetch("http://localhost:7000/users/login",details) // returns a cookie
+        // saves cookie to browser
+        const jwt = await httpResponse.text()//
+        document.cookie = `jwt=${jwt}`;
+        console.log(document.cookie)
+        localStorage.setItem('jwt',jwt);
+        console.log(localStorage.getItem('jwt'));
+
+    }
+    login()
+
+</script>
+</html>
