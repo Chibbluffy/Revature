@@ -7,8 +7,11 @@ import io.javalin.Javalin;
 public class App {
     public static void main(String[] args) {
         Javalin app = Javalin.create(
-                javalinConfig -> {
-                    javalinConfig.enableCorsForAllOrigins();
+//                javalinConfig -> {
+//                    javalinConfig.enableCorsForAllOrigins();
+//                },
+                config -> {
+                    config.enableCorsForAllOrigins();// allows the server to process JS requests from anywhere
                 }
         );
 

@@ -1,10 +1,14 @@
+dev/wan/utiltests/HibernateUtilTests.java
+ dev.wan.utiltests.HibernateUtilTests
 dev/wan/servicetests/SearchByTitleTests.java
  dev.wan.servicetests.SearchByTitleTests
 dev/wan/utiltests/ConnectionTest.java
  dev.wan.utiltests.ConnectionTest
-dev/wan/daotests/BookDaoTest.java
- dev.wan.daotests.BookDaoTest
 dev/wan/servicetests/BookServiceTests.java
  dev.wan.servicetests.BookServiceTests
+dev/wan/hibernatetests/BasicHibernateTests.java
+ dev.wan.hibernatetests.BasicHibernateTests
 dev/wan/utiltests/JwtTests.java
  dev.wan.utiltests.JwtTests
+dev/wan/daotests/BookDaoTest.java
+ dev.wan.daotests.BookDaoTest

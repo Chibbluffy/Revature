@@ -1,6 +1,7 @@
 package dev.wan.daotests;
 
 import dev.wan.daos.BookDAO;
+import dev.wan.daos.BookDaoHibernate;
 import dev.wan.daos.BookDaoLocal;
 import dev.wan.daos.BookDaoPostgres;
 import dev.wan.entities.Book;
@@ -13,7 +14,8 @@ import org.apache.log4j.Logger;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookDaoTest {
 //    private static BookDAO bdao = new BookDaoLocal();
-    private static BookDAO bdao = new BookDaoPostgres();
+//    private static BookDAO bdao = new BookDaoPostgres();
+    private static BookDAO bdao = new BookDaoHibernate();
     private static Book testBook = null;
     private static Logger logger = Logger.getLogger(BookDaoTest.class);
 //    class c = String.class;
