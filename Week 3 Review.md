@@ -99,4 +99,85 @@
 - Closures
 	- Function within a function
 	- The inner function can use variables defined in the outer function
-	- 
+
+	
+	
+	
+JavaScript Classes , 
+Objects are key value pairs. 
+Always mutable. 
+
+Type coercion. 
+Access modifiers
+
+Java vs JS
+compiled language vs Interpreted language
+
+AJAX
+- Can do requests without reloading whole page
+- How to know when promise is fulfilled??
+
+HOISTING
+- function hoisting
+- variable hoisting
+
+Semicolons
+
+Arrays 
+
+Item potency - safe operation. safe to repeat. GET is item potent. POST is NOT. 
+
+element vs attribute
+
+DOM
+
+CSS selecting
+
+CSS Grids
+
+HTML <meta> tag
+
+loading in JS from another source
+- <script src=?>
+- link, src, href
+
+Type coercion
+
+For in, for each
+
+addEventListener
+
+callback function
+
+data types
+
+Objects in Java vs JS
+- inheritance 
+- 
+
+Fetch
+
+AJAX
+
+Web Hosting
+
+Security issues
+
+Cross site request forgeries
+- OOS security rules
+- Session ID
+- JWTs
+- 
+
+MVC patterns
+- Model View Controller patterns
+- 
+
+Responsive 
+- changes while resizing, or on different devices
+- CSS
+- set diff rules for viewpoints
+- 
+
+unshift method
+- 

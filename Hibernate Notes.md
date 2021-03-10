@@ -1,0 +1,150 @@
+#Hibernate
+- ORM tool - Object Relational Mapping Framework
+	- Object Relational mapping
+- Hibernate has the ability to connect our entities in Java to tables in SQL
+- XML configuration or annotations
+	- We will be using annotations
+- Built on top of JDBC
+	- uses JDBC under the hood
+- Advantages
+	- Faster to setup and write DAOs with
+	- SQL dialect agnostic
+		- will work for any SQL database
+	- Has support for multiple ways to query your database
+
+#Key Interfaces of Hibernate
+- SessionFactory
+	- Creates our connection to database
+	- Reads hibernate mapping config to generate the SQL statements that reflect those mappings
+- Session
+	- Primary interface for performing CRUD operations
+	- Save()
+	- Update()
+	- Delete()
+	- Get()
+		- designed to Eager Fetch
+	- Load()
+		- designed to Lazy Fetch
+- Transaction
+	- Used to start and end database transactions
+	- Allows us to programmatically decide in Java when to commit or rolback a set of hibernate commands
+- Query
+	- Used to create Queries
+	- Criteria API
+		- Very OOP centric
+		- Criteria Interface that you can add restrictions to
+		- then execute the criteria to get matching records
+	- HQL
+		- Hibernate Query Language
+		- OOP hybrid of SQL and Java
+		- SQL agnostic
+	- Native SQL
+		- Regular SQL statement
+		- avoid if possible
+- Configuration****
+	- Used to store information about how to connect to the database
+	- What the SessionFactory uses to build itself
+	- By default it will look at the hibernate.cfg.xml to get config info
+	- Online it refers to it all as an Interface. It is NOT an interface. 
+	- It is an object
+
+#Hibernate.cfg.xml
+- Main configuration file for hibernate
+	- DB location
+	- username
+	- password
+	- mapped classes
+	- Show SQL
+	- auto create/drop
+	- SessionFactory Modes
+		- Create-drop
+		- Create
+		- Alter
+		- nothing
+
+#Annotations
+- Annotations are used to map entities to tables
+- Set up relationships between entities
+- Important annotations
+	- @Entity
+		- marks a class as an entity
+	- @Table
+		- What table this class is mapped to
+	- @Column
+		- What column this field is mapped to
+	- @Id
+		- Put over fields that are primary keys
+	- @GeneratedValue
+		- Put over fields that have generated values
+	- @JoinColumn
+		- Put over fields that are also a foreign key
+	- @OneToMany
+		- (mappedBy="the field in JAVA that has @JoinColumn on it")
+		- Put over a set in an Entity that has children (Director -> Movie)
+	- @ManyToMany
+		- Put over a set in an Entity that has a Many to Many relationship with another entity (Actors -> Movies)
+	- @JoinTable
+		- Put over a set in an Entity that has a Many to Many relationship with another entity (Actors -> Movies)
+		- @JoinColumn
+			- refers to the current entity
+		- @InverseJoinColumn
+			- What columns refer to the other entity you are connecting to
+
+#States of an object in Hibernate
+- Transient	
+	- Object that is not saved to the database yet
+	- Has ID of 0
+	- Has no corresponding record in database
+- Persistent
+	- Object that is saved to the database
+	- Has a non-zero ID
+	- It is still in an active session
+- Detached
+	- Used to be attached
+	- An object that corresponds to a record in the database
+	- Has a non-zero ID
+	- No longer connected to a live session
+
+#Cascading in Hibernate
+- Objects can cascade in Hibernate
+	- You can create a new transient movie
+	- You can add it to a persistent director
+	- When you update the director, the movie is also saved in movie table
+- Can define what cascades are legal
+	- Persist Cascade (no nested objects can be deleted. Only updated/created)
+		- Could add a transient movie to director and save it
+		- Can remove a movie from a director, but the update will not delete the movie in the database
+	- Remove Cascade (Objects can be deleted)
+
+#ACID properties of Transactions
+- Atomic
+	- A transaction either works or it does not
+	- There is no half work
+	- All statements get committed at end of transaction
+	- OR all statements get rolled back
+- Consistency
+	- The database is never in a saved state that is inconsistent
+	- The database moves between consisten states without a persistent intermediary state
+	- Quantum leaps
+		- One state to another
+		- No intermediary state
+- Isolated
+	- In reality, a database will be used by many users simultaneously
+	- Serializable
+		- There are no concurrent transaction allowed
+		- they just queue up
+		- 100% consistency guaranteed
+	- As database gets hight isolation levels, the rate of processing transactions decreases bc transactios do not run concurrently
+- Durable
+	- Any failures should be graceful and not result in a loss of data
+		- A transaction failing for any reason should not cause any problems
+		- No data loss
+		- No data corruption
+		- Like it never happened
+- Dirty reads (Actually impossible to have in most databases. Terrible. Violates ALL ACID principles)
+	- Whenever a query reads and returns info that was not committed
+- Non-repeatable read 
+	- occurs when a single transaction get inconsistent results due to deletion of a record
+- Phantom Read
+	- insert happens (from another transaction) in the middle of a transaction
+- 

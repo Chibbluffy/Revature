@@ -1,0 +1,20 @@
+#Angular
+- front end framework
+- Utilizes TS, not JS
+- Designed by Google
+- It is a SPA (Single Page Application)
+	- Only one page on the front end and HTML is dynamically removed and updated
+	- usually more efficient and easier to build with frameworks
+- Angular is NOT AngularJS
+	- Angular JS is the original
+		- written in JS not TS
+		- Different scopes
+		- Very different from Angular 2.0+
+	- Angular 2.0 and up are just called Angular
+- default port 4200
+- Angular is based on Components
+	- small chunks of HTML/CSS/TS that we use to build a larger application
+	- You can duplicate components
+	- create custom components
+	- makes the application modular and easier for a team to work on
+	- 

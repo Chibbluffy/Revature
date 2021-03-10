@@ -1,0 +1,37 @@
+#Node.js
+- Runtime environment for JavaScript
+	- Ryan Dahl of Google created this
+- Not the first server side JS environment
+	- But was the first GOOD one
+	- Actually very performant
+	- Could hold its own against Java or Python
+- Node.JS uses the V8 JS Engin
+	- same engine that Chrome browser uses
+- Very popular backend
+	- part of the JS everywhere paradigm
+- Node Package Manager (NPM)
+	- like Maven, but for Node.js
+
+#TypeScript
+- TypeScript is a super set of JS
+	- ANY JS is also valid TS
+	- TS has additional features
+	- Javascript that scales
+- Statically but not strongly typed language
+	- can optionally use types
+	- but values can still be coerced and it is not enforcable
+- Origins of TypeScript
+	- JS has a lot of flaws
+	- Dynamic coercive nature of JS lends itself to errors
+		- Objects without properties you are looking for
+		- calling functions with incorrect argument types/parameters
+		- Not knowing the Type return of a function
+		- Accidentally making global
+	- This part of JS made it very difficult to scale to large applications
+	- Microsoft Devs really liked JS and wanted to create a version that would scale better
+- This core feature of TypeScript is that it has Typing
+- TS itself cannot be run.
+	- transpiled into JS to actually be executed
+- VS Code is written in TS
+- TS beat Python for most loved language. Rust is still #1
+- 
