@@ -1,12 +1,66 @@
 package dev.wan.entities;
 
+
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Expense")
 public class Expense {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="expense_id")
+    int expenseId;
+
+    @Column(name="amount")
     double amount;
+
+    @Column(name="reason")
     String reason;
-    String status;
-    int dateSubmitted;
-    int dateProcessed;
-    String approvedByUser;
+
+    @Column(name="employee_id")
+    @JoinColumn(name="employee_id")
+    int employeeId;
+
+    @Column(name="expense_status")
+    Status expenseStatus;
+
+    @Column(name="submitted_date")
+    int submittedDate;
+
+    @Column(name="processed_date")
+    int processedDate;
+
+    @Column(name="processed_reason")
+    String processedReason;
+
+    @Column(name="processed_manager_id")
+    @JoinColumn(name="processed_manager_id")
+    Integer processedManagerId;
+
+    public Expense() {
+    }
+
+    public Expense(int expenseId, double amount, String reason, int employeeId, Status expenseStatus, int submittedDate, int processedDate, String processedReason, int processedManagerId) {
+        this.expenseId = expenseId;
+        this.amount = amount;
+        this.reason = reason;
+        this.employeeId = employeeId;
+        this.expenseStatus = expenseStatus;
+        this.submittedDate = submittedDate;
+        this.processedDate = processedDate;
+        this.processedReason = processedReason;
+        this.processedManagerId = processedManagerId;
+    }
+
+    public int getExpenseId() {
+        return expenseId;
+    }
+
+    public void setExpenseId(int expenseId) {
+        this.expenseId = expenseId;
+    }
 
     public double getAmount() {
         return amount;
@@ -24,47 +78,66 @@ public class Expense {
         this.reason = reason;
     }
 
-    public String getStatus() {
-        return status;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public int getDateSubmitted() {
-        return dateSubmitted;
+    public Status getExpenseStatus() {
+        return expenseStatus;
     }
 
-    public void setDateSubmitted(int dateSubmitted) {
-        this.dateSubmitted = dateSubmitted;
+    public void setStatus(Status status) {
+        this.expenseStatus = status;
     }
 
-    public int getDateProcessed() {
-        return dateProcessed;
+    public int getSubmittedDate() {
+        return submittedDate;
     }
 
-    public void setDateProcessed(int dateProcessed) {
-        this.dateProcessed = dateProcessed;
+    public void setSubmittedDate(int submittedDate) {
+        this.submittedDate = submittedDate;
     }
 
-    public String getApprovedByUser() {
-        return approvedByUser;
+    public int getProcessedDate() {
+        return processedDate;
     }
 
-    public void setApprovedByUser(String approvedByUser) {
-        this.approvedByUser = approvedByUser;
+    public void setProcessedDate(int processedDate) {
+        this.processedDate = processedDate;
+    }
+
+    public String getProcessedReason() {
+        return processedReason;
+    }
+
+    public void setProcessedReason(String processedReason) {
+        this.processedReason = processedReason;
+    }
+
+    public int getProcessedManagerId() {
+        return processedManagerId;
+    }
+
+    public void setProcessedManagerId(int processedManagerId) {
+        this.processedManagerId = processedManagerId;
     }
 
     @Override
     public String toString() {
         return "Expense{" +
-                "amount=" + amount +
+                "expenseId=" + expenseId +
+                ", amount=" + amount +
                 ", reason='" + reason + '\'' +
-                ", status='" + status + '\'' +
-                ", dateSubmitted=" + dateSubmitted +
-                ", dateProcessed=" + dateProcessed +
-                ", approvedByUser='" + approvedByUser + '\'' +
+                ", employeeId=" + employeeId +
+                ", status='" + expenseStatus + '\'' +
+                ", submittedDate=" + submittedDate +
+                ", processedDate=" + processedDate +
+                ", processedReason='" + processedReason + '\'' +
+                ", processedManagerId=" + processedManagerId +
                 '}';
     }
 }
