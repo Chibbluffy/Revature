@@ -1,0 +1,12 @@
+<h1>Edit order</h1>
+<h3>MENU</h3>
+<table>
+    <thead><th>Item</th><th>Price</th></thead>
+    <tr *ngFor="let item of items">
+        <td>{{item.itemName}}</td>
+        <td>{{item.price}}</td>
+        <button (click)="addItem(item)">+</button>
+        <td>{{item.count}}</td>
+        <button (click)="removeItem(item)">-</button></tr>
+</table>
+<button (click)="sendOrder()">Submit Order</button>

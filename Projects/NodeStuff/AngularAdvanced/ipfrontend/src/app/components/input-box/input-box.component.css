@@ -1,0 +1,16 @@
+.look-button {
+    display: grid;
+    min-width: 90px;
+    max-width: 90px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+  }
+.inputbox{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}

@@ -1,0 +1,7 @@
+<h3>Pending ToDos</h3>
+
+<table>
+    <thead><th>Description</th><th>Priority</th></thead>
+    <tr *ngFor="let todo of todos"><div *ngIf="!todo.isComplete"><td>{{todo.description}}</td><td>{{todo.priority | priority}}</td><button (click)="markCompleted(todo)">Mark Complete</button></div></tr>
+</table>
+

@@ -1,0 +1,12 @@
+<h3>Create a Book</h3>
+
+<label for="titleInput">Title</label>
+<input id="titleInput" type="text" [(ngModel)]="title">
+
+<label for="authorInput">Author</label>
+<input id="authorInput" type="text" [(ngModel)]="author">
+
+<label for="conditionInput">Condition</label>
+<input id="conditionInput" type="number" [(ngModel)]="condition">
+
+<button (click)="createBook()" mat-stroked-button color="accent">Create Book</button>

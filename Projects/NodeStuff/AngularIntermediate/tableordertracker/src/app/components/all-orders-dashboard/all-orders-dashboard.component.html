@@ -1,0 +1,19 @@
+<h1>All Orders</h1>
+<table>
+    <thead>
+        <th>Table</th>
+        <th>Order Without tax</th>
+        <th>Order With tax</th>
+    </thead>
+    <tr *ngFor="let order of orders">
+        <td>{{order.tableId}}</td>
+        <td>{{sumNoTax(order) | dollars}}</td>
+        <td>{{sumWithTax(order) | dollars}}</td>
+        <button (click)="editOrder(order)">Edit Order</button>
+    </tr>
+    <tr><td>Total Orders: </td>
+        <td>{{sumAllNoTax | dollars}}</td>
+        <td>{{sumAllWithTax | dollars}}</td>
+    </tr>
+</table>
+<button (click)="addNewOrder()">Create New Order</button>

@@ -1,0 +1,6 @@
+<div class="inputbox">
+<label for="ipAddress">IP Address</label>
+<input id="ipAddress" type="text" [(ngModel)]="ipAddress">
+</div>
+
+<button class="look-button" mat-raised-button color="primary" (click)="sendRequest(ipAddress)">Look Up!</button>

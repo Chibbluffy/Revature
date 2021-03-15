@@ -1,0 +1,20 @@
+<button class="refreshbutton" (click)="refresh()">Refresh</button>
+<table class="infotable">
+    <thead>
+        <th>Key</th>
+        <th>Value</th>
+    </thead>
+    <tbody>
+        <tr><td>Country</td><td>{{ipinfo.country}}</td></tr>
+        <tr><td>Region</td><td>{{ipinfo.regionName}}</td></tr>
+        <tr><td>City</td><td>{{ipinfo.city}}</td></tr>
+        <tr><td>Zip</td><td>{{ipinfo.zip}}</td></tr>
+        <tr><td>Latitude</td><td>{{ipinfo.lat}}</td></tr>
+        <tr><td>Longitude</td><td>{{ipinfo.lon}}</td></tr>
+        <tr><td>TimeZone</td><td>{{ipinfo.timezone}}</td></tr>
+        <tr><td>ISP</td><td>{{ipinfo.isp}}</td></tr>
+        <tr><td>IP</td><td>{{ipinfo.query}}</td></tr>
+        <tr><td>-----------------------------------------------</td>
+        <td>-----------------------------------------------</td></tr>
+    </tbody>
+</table>
