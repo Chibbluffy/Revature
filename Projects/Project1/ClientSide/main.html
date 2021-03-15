@@ -6,13 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/main.css">
 
 </head>
 <body>
-    
+    <div class="grid-container">
+        <div class="Header1">
+            <h1>Mondstadt City Expenses</h1>
+        </div>
+        <div class="Header2">
+            <h2>Managed by the Knights of Favonius</h2>
+        </div>
+        <div class="Login">
+            <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+        </div>
+      </div>
 </body>
 
-<script src="main.js"></script>
+<script>
+    function login(){
+        window.location.href = './login.html';
+    }
+</script>
 
 </html>

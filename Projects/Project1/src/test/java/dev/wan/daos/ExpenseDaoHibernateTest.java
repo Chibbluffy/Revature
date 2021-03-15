@@ -1,7 +1,6 @@
 package dev.wan.daos;
 
 import dev.wan.entities.Expense;
-import dev.wan.entities.Status;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,13 +10,13 @@ import java.util.Set;
 
 class ExpenseDaoHibernateTest {
     static ExpenseDao edao = new ExpenseDaoHibernate();
-    static Expense expense1 = new Expense(0,10,"lunch",1, Status.PENDING,0,0,"",3);
-    static Expense expense2 = new Expense(0,100,"lunch",1, Status.PENDING,0,0,"",3);
-    static Expense expense3 = new Expense(0,1000,"party",1, Status.PENDING,0,0,"",3);
-    static Expense expense4 = new Expense(0,1500,"rewards",1, Status.PENDING,0,0,"",3);
-    static Expense expense5 = new Expense(0,2000,"expedition",1, Status.PENDING,0,0,"",3);
-    static Expense expense6 = new Expense(0,5000,"bounties",1, Status.PENDING,0,0,"",3);
-    static Expense expense7 = new Expense(0,10000,"large expedition",1, Status.PENDING,0,0,"",3);
+    static Expense expense1 = new Expense(0,10,"lunch",1, "PENDING",0,0,"",3);
+    static Expense expense2 = new Expense(0,100,"lunch",1, "PENDING",0,0,"",3);
+    static Expense expense3 = new Expense(0,1000,"party",1, "PENDING",0,0,"",3);
+    static Expense expense4 = new Expense(0,1500,"rewards",1, "PENDING",0,0,"",3);
+    static Expense expense5 = new Expense(0,2000,"expedition",1, "PENDING",0,0,"",3);
+    static Expense expense6 = new Expense(0,5000,"bounties",1, "PENDING",0,0,"",3);
+    static Expense expense7 = new Expense(0,10000,"large expedition",1, "PENDING",0,0,"",3);
     static Expense testexpense;
     @BeforeAll
     static void setUp(){
@@ -43,7 +42,7 @@ class ExpenseDaoHibernateTest {
 
     @Test
     void create_expense(){
-        Expense expense = new Expense(0,10,"lunch",1, Status.APPROVED,0,0,"",3);
+        Expense expense = new Expense(0,10,"lunch",1, "APPROVED",0,0,"",3);
         expense = edao.createExpense(expense);
         System.out.println(expense);
         testexpense = expense;

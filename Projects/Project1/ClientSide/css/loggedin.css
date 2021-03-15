@@ -1,0 +1,74 @@
+html,
+body {
+  height: 100%;
+}
+  
+  .btn{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1, h2{
+      color:orangered;
+      text-align: center;
+  }
+  .navbar-brand{
+    text-indent: 50px;
+    font-family: genshinFont;
+  }
+  .table{
+      margin: auto;
+  }
+  .btn-success{
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .btn-primary{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    justify-content: center;
+  }
+  .create-form {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .summaryStatsHeader{
+    margin: auto;
+    text-align: center;
+
+  }
+  @font-face{
+    font-family: genshinFont;
+    src: url(genshin.ttf);
+  }
+  .center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    }

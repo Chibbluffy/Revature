@@ -9,10 +9,11 @@ public class JwtUtil {
     private static final String secret="Better secret string than Adam's super secret string";
     private static final Algorithm algorithm = Algorithm.HMAC256(secret);
 
-    public static String generate(String role, String username){
+    public static String generate(int employeeId, String username, String role){
         String token = JWT.create()
-                .withClaim("role", role)
+                .withClaim("employeeId", employeeId)
                 .withClaim("username", username)
+                .withClaim("role", role)
                 .sign(algorithm);
         return token;
     }

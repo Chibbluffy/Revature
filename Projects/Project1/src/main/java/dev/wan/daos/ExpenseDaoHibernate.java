@@ -56,6 +56,19 @@ public class ExpenseDaoHibernate implements ExpenseDao{
             return null;
         }
     }
+    @Override
+    public Set<Expense> getExpensesByEmployeeId(int employeeId) {
+        try(Session session = sf.openSession()){
+            String hql = "FROM Expense e WHERE e.employeeId="+employeeId;
+            Query query = session.createQuery(hql);
+            Set<Expense> expenses = new HashSet<Expense>(query.list());
+            return expenses;
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(e.toString());
+            return null;
+        }
+    }
 
     @Override
     public Set<Expense> getExpensesByStatus(String expenseStatus) {

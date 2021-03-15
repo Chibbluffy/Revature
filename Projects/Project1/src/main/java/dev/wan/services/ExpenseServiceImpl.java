@@ -2,7 +2,6 @@ package dev.wan.services;
 
 import dev.wan.daos.ExpenseDao;
 import dev.wan.entities.Expense;
-import dev.wan.entities.Status;
 
 import java.util.Set;
 
@@ -16,10 +15,10 @@ public class ExpenseServiceImpl implements ExpenseService{
     @Override
     public Expense createExpense(Expense expense) {
         expense.setProcessedDate(0);
-        expense.setProcessedReason("");
-        expense.setSubmittedDate((int)System.currentTimeMillis()/1000);
-        expense.setProcessedManagerId(0);
-        expense.setStatus(Status.PENDING);
+        expense.setProcessedReason("N/A");
+        expense.setSubmittedDate((int)(System.currentTimeMillis()/1000));
+        expense.setProcessedManagerId(null);
+        expense.setStatus("PENDING");
         return this.expenseDao.createExpense(expense);
     }
 
@@ -33,6 +32,10 @@ public class ExpenseServiceImpl implements ExpenseService{
         return this.expenseDao.getExpenseById(id);
     }
 
+    @Override
+    public Set<Expense> getExpensesByEmployeeId(int employeeId) {
+        return this.expenseDao.getExpensesByEmployeeId(employeeId);
+    }
     @Override
     public Set<Expense> getExpensesByStatus(String expenseStatus) {
         return this.expenseDao.getExpensesByStatus(expenseStatus);
@@ -50,34 +53,17 @@ public class ExpenseServiceImpl implements ExpenseService{
 
     @Override
     public Expense approveExpense(Expense expense, int managerId){
-        expense.setStatus(Status.APPROVED);
+        expense.setStatus("APPROVED");
         expense.setProcessedManagerId(managerId);
-        expense.setProcessedDate((int)System.currentTimeMillis()/1000);
-        return this.expenseDao.updateExpense(expense);
-    }
-    @Override
-    public Expense approveExpense(Expense expense, int managerId, String reason){
-        expense.setStatus(Status.APPROVED);
-        expense.setProcessedManagerId(managerId);
-        expense.setProcessedReason(reason);
-        expense.setProcessedDate((int)System.currentTimeMillis()/1000);
+        expense.setProcessedDate((int)(System.currentTimeMillis()/1000));
         return this.expenseDao.updateExpense(expense);
     }
 
     @Override
     public Expense denyExpense(Expense expense, int managerId){
-        expense.setStatus(Status.DENIED);
+        expense.setStatus("DENIED");
         expense.setProcessedManagerId(managerId);
-        expense.setProcessedDate((int)System.currentTimeMillis()/1000);
-        return this.expenseDao.updateExpense(expense);
-    }
-
-    @Override
-    public Expense denyExpense(Expense expense, int managerId, String reason){
-        expense.setStatus(Status.DENIED);
-        expense.setProcessedManagerId(managerId);
-        expense.setProcessedReason(reason);
-        expense.setProcessedDate((int)System.currentTimeMillis()/1000);
+        expense.setProcessedDate((int)(System.currentTimeMillis()/1000));
         return this.expenseDao.updateExpense(expense);
     }
 

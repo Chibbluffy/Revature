@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/loggedin.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <a id="navbar" class="navbar-brand" href="./main.html">Manage All Expense Requests: Logged in as </a>
+        <button type="button" class="btn btn-outline btn-success" onclick="goToCreateExpense()">New Expense</button>
+        <div class="Logout">
+            <button type="button" class="btn btn-outline btn-danger" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <h3 style="font-family: genshinFont" id="expensesSummary" class="summaryStatsHeader">Total % Approved:0% | Total % Denied: 0% <br/> Total Amount Reimbursed: $0</h3>
+    <div class="center">
+        <button type="button" class="btn btn-outline btn-info" onclick="showOnly('APPROVED')">Show Approved</button>
+        <button type="button" class="btn btn-outline btn-info" onclick="showOnly('DENIED')">Show Denied</button>
+        <button type="button" class="btn btn-outline btn-info" onclick="refreshTable()">Show All</button>
+    </div>
+</table>
+    <span id="failed-to-load-span"></span>
+    <table class="table" id="expensetable">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" onclick="refreshTable()">ID</th>
+            <th scope="col" onclick="sortTable('amount')">Amount</th>
+            <th scope="col">Status</th>
+            <th scope="col">Reason</th>
+            <th scope="col" onclick="sortTable('employeeId')">Employee ID</th>
+            <th scope="col" onclick="sortTable('submittedDate')">Date Submitted</th>
+            <th scope="col" onclick="sortTable('processedDate')">Processed Date</th>
+            <th scope="col">Processing Note</th>
+            <th scope="col">Actions</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id="tablebody">
+
+        </tbody>
+        
+      </table>
+      
+    </body>
+    <script src="js/common.js"></script>
+    <script>
+        Array.prototype.sortOn = function(key){
+            this.sort(function(a, b){
+                if(a[key] < b[key]){
+                    return -1;
+                }else if(a[key] > b[key]){
+                    return 1;
+                }
+                return 0;
+            });
+        }
+        const username = window.sessionStorage.getItem('username');
+        console.log(username)
+
+        const navbar = document.getElementById("navbar");
+        navbar.innerHTML += username;    
+        
+        function goToCreateExpense(stat){
+            window.location.href = './createexpense.html';
+        }
+        function formatExpenseRow(expense){
+            let tr = "<tr>";
+            tr += `
+                <td>${expense.expenseId}</td>
+                <td>$${expense.amount.toFixed(2)}</td>
+                <td>${expense.expenseStatus}</td>
+                <td>${expense.reason}</td>
+                <td>${expense.employeeId}</td>
+                <td>${epochToDate(expense.submittedDate).toString().split("GMT")[0]}</td>
+            `
+            if (expense.status == "PENDING"){
+                tr += `
+                <td>N/A</td>
+                <td>N/A</td>
+                <td><button type="button" class="btn btn-success" onclick="approveExpense(${expense.expenseId})">Approve</button></td>
+                <td><button type="button" class="btn btn-danger" onclick="denyExpense(${expense.expenseId})">Deny</button></td>
+                <td>
+                    <label for="inputExpenseReason" class="sr-only">Reason</label>
+                    <input name="reason" type="text" id="inputExpenseReason" class="form-control" placeholder="N/A" required>
+                </td>
+                <td><button type="button" class="btn btn-outline-warning" onclick="addExpenseProcessingNote(${expense.expenseId})">Update response</button></td>
+                `
+            }else{
+                tr += `
+                <td>${epochToDate(expense.processedDate).toString().split("GMT")[0]}</td>
+                <td>${expense.processedReason}</td>
+                <td><button type="button" class="btn btn-outline-success" onclick="approveExpense(${expense.expenseId})">Approve</button></td>
+                <td><button type="button" class="btn btn-outline-danger" onclick="denyExpense(${expense.expenseId})">Deny</button></td>
+                <td>
+                    <label for="inputExpenseReason${expense.expenseId}" class="sr-only">Reason</label>
+                    <input name="reason" type="text" id="inputExpenseReason${expense.expenseId}" class="form-control" placeholder="N/A" required>
+                </td>
+                <td><button type="button" class="btn btn-outline-warning" onclick="addExpenseProcessingNote(${expense.expenseId})">Update response</button></td>
+                `
+            }
+            tr += "</tr>"
+            return tr
+        }
+        async function showOnly(stat){
+            const expenses = await getExpenses();
+            expenses.sortOn("expenseId")
+            const tbody = document.getElementById("tablebody");
+            tbody.innerHTML = ``
+            console.log(expenses);
+            for (let expense of expenses){
+                console.log(expense.expenseStatus)
+                if (expense.expenseStatus == stat){
+                    tbody.innerHTML += formatExpenseRow(expense)
+                }
+            }
+        }
+        function updateSummary(expenses){
+            const header = document.getElementById("expensesSummary");
+            let totalApproved = 0
+            let totalDenied = 0
+            let totalPending = 0
+            let totalAmountReimbursed = 0
+            console.log("Updating summary")
+            for (let expense of expenses){
+                if (expense.expenseStatus == "APPROVED"){
+                    totalApproved += 1
+                    totalAmountReimbursed += expense.amount
+                }
+                if (expense.expenseStatus == "DENIED"){
+                    totalDenied += 1
+                }
+                if (expense.expenseStatus == "PENDING"){
+                    totalPending += 1
+                }
+            }
+            header.innerHTML = `Total % Approved: ${(totalApproved/expenses.length*100).toFixed(2)}% | Total % Denied: ${(totalDenied/expenses.length*100).toFixed(2)}% <br/> Total Amount Reimbursed: $${totalAmountReimbursed.toFixed(2)}`
+        }
+        async function refreshTable(){
+            const expenses = await getExpenses();
+            expenses.sortOn("expenseId")
+            const tbody = document.getElementById("tablebody");
+            tbody.innerHTML = ``
+            console.log(expenses);
+            for (let expense of expenses){
+                tbody.innerHTML += formatExpenseRow(expense)
+            }
+            updateSummary(expenses)
+        }
+        async function sortTable(column){
+            const expenses = await getExpenses();
+            expenses.sortOn(column)
+            const tbody = document.getElementById("tablebody");
+            tbody.innerHTML = ``
+            console.log(expenses);
+            for (let expense of expenses){
+                tbody.innerHTML += formatExpenseRow(expense)
+            }
+            updateSummary(expenses)
+        }
+        refreshTable();
+        async function approveExpense(expenseId){
+            const token = window.sessionStorage.getItem('sessionToken');
+            const headers = {
+                method:'PUT',
+                headers:{
+                    Authorization:token
+                }
+            }
+            let response = await fetch(`http://localhost:7000/expenses/${expenseId}?action=approve`, headers);
+            update()
+        }
+        async function denyExpense(expenseId){
+            const token = window.sessionStorage.getItem('sessionToken');
+            const headers = {
+                method:'PUT',
+                headers:{
+                    Authorization:token
+                }
+            }
+            let response = await fetch(`http://localhost:7000/expenses/${expenseId}?action=deny`, headers);
+            update()
+        }
+        async function addExpenseProcessingNote(expenseId){
+            const token = window.sessionStorage.getItem('sessionToken');
+            const reason = document.getElementById(`inputExpenseReason${expenseId}`).value;
+            const headers = {
+                method:'GET',
+                headers:{
+                    Authorization:token
+                }
+            }
+            let response = await fetch(`http://localhost:7000/expenses/${expenseId}`, headers);
+            let expense = await response.json();
+            expense.processedReason = reason;
+            headers.method = 'PUT';
+            headers.body = JSON.stringify(expense);
+            response = await fetch(`http://localhost:7000/expenses/${expenseId}`, headers);
+            update()
+        }  
+    </script>
+
+</html>

@@ -9,14 +9,13 @@ public interface ExpenseService {
 
     Set<Expense> getAllExpenses();
     Expense getExpenseById(int id);
+    Set<Expense> getExpensesByEmployeeId(int employeeId);
     Set<Expense> getExpensesByStatus(String expenseStatus);
     Set<Expense> getExpensesBySubmitter(int submitterId);
 
     Expense updateExpense(Expense expense);
     public Expense approveExpense(Expense expense, int managerId);
-    public Expense approveExpense(Expense expense, int managerId, String reason);
     public Expense denyExpense(Expense expense, int managerId);
-    public Expense denyExpense(Expense expense, int managerId, String reason);
 
 
         boolean deleteExpenseById(int id);

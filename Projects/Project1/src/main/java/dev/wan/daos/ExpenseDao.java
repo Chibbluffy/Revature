@@ -11,6 +11,7 @@ public interface ExpenseDao {
     // Read
     Set<Expense> getAllExpenses();
     Expense getExpenseById(int id);
+    Set<Expense> getExpensesByEmployeeId(int employeeId);
     Set<Expense> getExpensesByStatus(String expenseStatus);
     Set<Expense> getExpensesBySubmitter(int submitterId);
 

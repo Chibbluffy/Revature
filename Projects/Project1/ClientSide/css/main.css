@@ -1,0 +1,39 @@
+html,
+body {
+  height: 100%;
+  background-image: url("../images/Mondstadt.jpg");
+  background-repeat: no-repeat;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "Header1 . Login . Header2"
+      ". . . . ."
+      ". . . . .";
+  }
+  
+  .Header1 { grid-area: Header1; }
+  
+  .Header2 { grid-area: Header2; }
+  
+  .Login { grid-area: Login; }
+
+  .btn{
+    min-width: fit-content;
+    width: 100%;
+  }
+  h1, h2{
+      color:orangered;
+      text-align: center;
+  }
+  @font-face{
+    font-family: genshinFont;
+    src: url(genshin.ttf);
+  }
+  div{
+    font-family: genshinFont;
+  }

@@ -24,7 +24,7 @@ public class Expense {
     int employeeId;
 
     @Column(name="expense_status")
-    Status expenseStatus;
+    String expenseStatus;
 
     @Column(name="submitted_date")
     int submittedDate;
@@ -42,7 +42,7 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(int expenseId, double amount, String reason, int employeeId, Status expenseStatus, int submittedDate, int processedDate, String processedReason, int processedManagerId) {
+    public Expense(int expenseId, double amount, String reason, int employeeId, String expenseStatus, int submittedDate, int processedDate, String processedReason, int processedManagerId) {
         this.expenseId = expenseId;
         this.amount = amount;
         this.reason = reason;
@@ -86,11 +86,11 @@ public class Expense {
         this.employeeId = employeeId;
     }
 
-    public Status getExpenseStatus() {
+    public String getExpenseStatus() {
         return expenseStatus;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.expenseStatus = status;
     }
 
@@ -118,11 +118,11 @@ public class Expense {
         this.processedReason = processedReason;
     }
 
-    public int getProcessedManagerId() {
+    public Integer getProcessedManagerId() {
         return processedManagerId;
     }
 
-    public void setProcessedManagerId(int processedManagerId) {
+    public void setProcessedManagerId(Integer processedManagerId) {
         this.processedManagerId = processedManagerId;
     }
 

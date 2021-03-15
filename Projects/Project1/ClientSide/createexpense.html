@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Create Expense</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/loggedin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <nav class="navbar navbar-dark bg-primary">
+        <a id="navbar" class="navbar-brand" href="./main.html">Expense Creation Page</a>
+        <!-- <button onclick="logout()" class="navbar-text btn">Logout</button> -->
+        <button type="button" class="btn btn-outline btn-success" onclick="update()">Back</button>
+        <div class="Logout">
+            <button type="button" class="btn btn-outline btn-danger" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="create-form">
+      <h1 class="h3 mb-3 font-weight-normal">Expense Information</h1>
+      <span id="create-message"></span>
+      <label for="inputExpenseAmount" class="sr-only">Amount</label>
+      <input name="amount" type="number" id="inputExpenseAmount" class="form-control" placeholder=0 required autofocus>
+      <label for="inputExpenseReason" class="sr-only">Reason</label>
+      <input name="reason" type="text" id="inputExpenseReason" class="form-control" placeholder="N/A" required>
+      <button class="btn btn-lg btn-primary btn-block" onclick="submitExpense()">Submit Expense</button>
+    </div>
+  </body>
+  <script src="js/common.js"></script>
+  <script>
+      async function submitExpense(){
+        const amount = parseFloat(document.getElementById("inputExpenseAmount").value);
+        const reason = document.getElementById("inputExpenseReason").value;
+        const parsedToken = parseJWT(sessionStorage.getItem("sessionToken"));
+        const expense = {
+            expenseId:0,
+            amount:amount,
+            reason:reason,
+            employeeId:parsedToken.employeeId,
+            expenseStatus:"PENDING",
+            submittedDate:0,
+            processedDate:0,
+            processedReason:"N/A"
+        }
+        const token = window.sessionStorage.getItem('sessionToken');
+        const headers = {
+                        method:'POST', 
+                        body:JSON.stringify(expense),
+                        headers:{
+                            Authorization:token
+                        }};
+        let response = await fetch('http://localhost:7000/expenses', headers);
+        console.log(response);
+        if (response.status != 201){
+            const createMessageSpan = document.getElementById("create-message");
+            createMessageSpan.innerHTML = `
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Unable to submit expense <br/>Please try again.
+                </div>
+            `;
+        }
+        else {
+            const responseJSON = await response.json();
+            const createMessageSpan = document.getElementById("create-message");
+            createMessageSpan.innerHTML = `
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Successfully submitted expense #${responseJSON.expenseId}
+                </div>
+            `;
+            // update();
+        }
+
+      }
+
+  </script>
+</html>
