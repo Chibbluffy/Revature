@@ -2,6 +2,7 @@ package dev.wan.controllers;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.gson.Gson;
+import dev.wan.daos.BookDAO;
 import dev.wan.daos.BookDaoLocal;
 import dev.wan.daos.BookDaoPostgres;
 import dev.wan.entities.Book;
@@ -17,6 +18,13 @@ import java.util.Set;
 // Controllers should call services to perform actions
 public class BookController {
     private BookService bookService = new BookServiceImpl(new BookDaoPostgres());
+
+    public BookController() {
+    }
+
+    public BookController(BookService bs) {
+        this.bookService = bs;
+    }
 
     public Handler getAllBooksHandler = (ctx) -> {
         String titleContains = ctx.queryParam("titleContains", "NONE");

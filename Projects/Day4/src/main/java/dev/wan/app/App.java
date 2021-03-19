@@ -1,20 +1,26 @@
 package dev.wan.app;
 
+import dev.wan.configs.AppConfig;
 import dev.wan.controllers.BookController;
 import dev.wan.controllers.LoginController;
 import io.javalin.Javalin;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {
     public static void main(String[] args) {
-        Javalin app = Javalin.create(
-//                javalinConfig -> {
-//                    javalinConfig.enableCorsForAllOrigins();
-//                },
-                config -> {
-                    config.enableCorsForAllOrigins();// allows the server to process JS requests from anywhere
-                }
-        );
+//        Javalin app = Javalin.create(
+////                javalinConfig -> {
+////                    javalinConfig.enableCorsForAllOrigins();
+////                },
+//                config -> {
+//                    config.enableCorsForAllOrigins();// allows the server to process JS requests from anywhere
+//                }
+//        );
 
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        Javalin app = ac.getBean("noCors", Javalin.class);
         BookController bookController = new BookController();
         LoginController loginController = new LoginController();
 
