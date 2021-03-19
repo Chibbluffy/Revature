@@ -41,7 +41,7 @@
         const login = {username:username, passhash:password};
 
         const headers = {method:'POST', body:JSON.stringify(login)};
-        let response = await fetch('http://localhost:7000/login', headers);
+        let response = await fetch('http://35.232.230.2:7000/login', headers);
         if (response.status != 200){
             const loginMessageSpan = document.getElementById("login-message");
             loginMessageSpan.innerHTML = `
@@ -70,7 +70,7 @@
             }
         }
 
-        let response = await fetch('http://localhost:7000/expenses', headers);
+        let response = await fetch('http://35.232.230.2:7000/expenses', headers);
         if (response.status != 200){
             const failedToLoadSpan = document.getElementById("failed-to-load-span");
             failedToLoadSpan.innerHTML = `
@@ -84,7 +84,12 @@
         }
     }
     function epochToDate(seconds){
-        let dt = new Date(0);
-        dt.setUTCSeconds(seconds);
-        return dt;
+        if (seconds == 0){
+            return "N/A"
+        }else{
+            let dt = new Date(0);
+            dt.setUTCSeconds(seconds);
+            let formattedDate = dt.toString().split("GMT")[0]
+            return formattedDate;
+        }
     }

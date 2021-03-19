@@ -3,6 +3,9 @@ body {
   height: 100%;
   background-image: url("../images/Mondstadt.jpg");
   background-repeat: no-repeat;
+  margin: auto;
+  background-size:contain;
+  background-color:skyblue;
 }
 
 .grid-container {

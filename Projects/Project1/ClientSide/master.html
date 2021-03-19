@@ -39,6 +39,8 @@
             <th scope="col">Processing Note</th>
             <th scope="col">Actions</th>
             <th scope="col"></th>
+            <th scope="col">Reason</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody id="tablebody">
@@ -77,7 +79,7 @@
                 <td>${expense.expenseStatus}</td>
                 <td>${expense.reason}</td>
                 <td>${expense.employeeId}</td>
-                <td>${epochToDate(expense.submittedDate).toString().split("GMT")[0]}</td>
+                <td>${epochToDate(expense.submittedDate)}</td>
             `
             if (expense.status == "PENDING"){
                 tr += `
@@ -93,7 +95,7 @@
                 `
             }else{
                 tr += `
-                <td>${epochToDate(expense.processedDate).toString().split("GMT")[0]}</td>
+                <td>${epochToDate(expense.processedDate)}</td>
                 <td>${expense.processedReason}</td>
                 <td><button type="button" class="btn btn-outline-success" onclick="approveExpense(${expense.expenseId})">Approve</button></td>
                 <td><button type="button" class="btn btn-outline-danger" onclick="denyExpense(${expense.expenseId})">Deny</button></td>
@@ -172,7 +174,7 @@
                     Authorization:token
                 }
             }
-            let response = await fetch(`http://localhost:7000/expenses/${expenseId}?action=approve`, headers);
+            let response = await fetch(`http://35.232.230.2:7000/expenses/${expenseId}?action=approve`, headers);
             update()
         }
         async function denyExpense(expenseId){
@@ -183,7 +185,7 @@
                     Authorization:token
                 }
             }
-            let response = await fetch(`http://localhost:7000/expenses/${expenseId}?action=deny`, headers);
+            let response = await fetch(`http://35.232.230.2:7000/expenses/${expenseId}?action=deny`, headers);
             update()
         }
         async function addExpenseProcessingNote(expenseId){
@@ -195,12 +197,12 @@
                     Authorization:token
                 }
             }
-            let response = await fetch(`http://localhost:7000/expenses/${expenseId}`, headers);
+            let response = await fetch(`http://35.232.230.2:7000/expenses/${expenseId}`, headers);
             let expense = await response.json();
             expense.processedReason = reason;
             headers.method = 'PUT';
             headers.body = JSON.stringify(expense);
-            response = await fetch(`http://localhost:7000/expenses/${expenseId}`, headers);
+            response = await fetch(`http://35.232.230.2:7000/expenses/${expenseId}`, headers);
             update()
         }  
     </script>

@@ -72,7 +72,7 @@
                     <td>$${expense.amount.toFixed(2)}</td>
                     <td>${expense.expenseStatus}</td>
                     <td>${expense.reason}</td>
-                    <td>${epochToDate(expense.submittedDate).toString().split("GMT")[0]}</td>
+                    <td>${epochToDate(expense.submittedDate)}</td>
                 `
 
                 if (expense.status == "PENDING"){
@@ -82,7 +82,7 @@
                     `
                 }else{
                     tr += `
-                    <td>${epochToDate(expense.processedDate).toString().split("GMT")[0]}</td>
+                    <td>${epochToDate(expense.processedDate)}</td>
                     <td>${expense.processedReason}</td>
                     `
                 }

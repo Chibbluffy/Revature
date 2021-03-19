@@ -42,7 +42,7 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(int expenseId, double amount, String reason, int employeeId, String expenseStatus, int submittedDate, int processedDate, String processedReason, int processedManagerId) {
+    public Expense(int expenseId, double amount, String reason, int employeeId, String expenseStatus, int submittedDate, int processedDate, String processedReason, Integer processedManagerId) {
         this.expenseId = expenseId;
         this.amount = amount;
         this.reason = reason;

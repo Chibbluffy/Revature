@@ -61,7 +61,7 @@
                         headers:{
                             Authorization:token
                         }};
-        let response = await fetch('http://localhost:7000/expenses', headers);
+        let response = await fetch('http://35.232.230.2:7000/expenses', headers);
         console.log(response);
         if (response.status != 201){
             const createMessageSpan = document.getElementById("create-message");

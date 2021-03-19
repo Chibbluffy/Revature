@@ -10,14 +10,15 @@ import java.util.Set;
 
 class ExpenseDaoHibernateTest {
     static ExpenseDao edao = new ExpenseDaoHibernate();
-    static Expense expense1 = new Expense(0,10,"lunch",1, "PENDING",0,0,"",3);
-    static Expense expense2 = new Expense(0,100,"lunch",1, "PENDING",0,0,"",3);
-    static Expense expense3 = new Expense(0,1000,"party",1, "PENDING",0,0,"",3);
-    static Expense expense4 = new Expense(0,1500,"rewards",1, "PENDING",0,0,"",3);
-    static Expense expense5 = new Expense(0,2000,"expedition",1, "PENDING",0,0,"",3);
-    static Expense expense6 = new Expense(0,5000,"bounties",1, "PENDING",0,0,"",3);
-    static Expense expense7 = new Expense(0,10000,"large expedition",1, "PENDING",0,0,"",3);
+    static Expense expense1 = new Expense(0,10,"lunch",1, "PENDING",1615793637,0,"",null);
+    static Expense expense2 = new Expense(0,100,"lunch",1, "PENDING",1615793637,0,"",null);
+    static Expense expense3 = new Expense(0,1000,"party",1, "PENDING",1615793637,0,"",null);
+    static Expense expense4 = new Expense(0,1500,"rewards",1, "PENDING",1615793637,0,"",null);
+    static Expense expense5 = new Expense(0,2000,"expedition",1, "PENDING",1615793637,0,"",null);
+    static Expense expense6 = new Expense(0,5000,"bounties",1, "PENDING",1615793637,0,"",null);
+    static Expense expense7 = new Expense(0,10000,"large expedition",1, "PENDING",1615793637,0,"",null);
     static Expense testexpense;
+
     @BeforeAll
     static void setUp(){
         edao.createExpense(expense1);
