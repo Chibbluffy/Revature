@@ -1,0 +1,90 @@
+#Software Development lifecycle
+- SDLC (circular)
+- Requirement Analysis/Assessing the current situation
+	- Decide what you have to work on
+	- What are priorities
+	- What is the current state of the application
+- Design
+	- Work out how to achieve goals
+	- Setup application
+- Implementation
+	- Coding the application
+- Testing
+	- This blurs with implementation
+- Evolution/monitoring/feedback
+	- Find bugs
+	- Find pain points
+	- Find additional requested features 
+
+#WaterFall (OLD)
+- Follow a rigid one way path to completing the application
+	- requirements document
+		- labels everything needed in application
+			- Features
+			- tech to be used
+			- how it will be tested
+			- dates and deadlines
+	- Design, Implement, Verify, Maintain
+- Never skip a step
+- Never go back a step
+- Software engineering is not normal engineering
+	- it is very easy to change past decisions
+		- Ex. Building cannot redo a concrete foundation
+	- It is possible to work on many different parts at once
+		- Ex. You cannot install windows into a building if it does not have walls first
+	- Software can be more flexible than other types of engineering
+	- Software is also constantly changing 
+		- Good and bad
+		- A dependency may be a security risk
+		- New updates are easy to add in
+
+# Agile
+- A paradigm of thinking
+- not a specific implementation
+	- more like guidelines
+- The core principle is that you should be agile and be willing to adapt and change. Do not stick to a rigid structure
+	- Agile manifesto
+	- Tenets
+		- Individuals over processes (communicate with people rather than focus on process)
+		- Demos over documentation
+			- it is much better to have a non complete demo than a word document describing what was done
+		- Customer collaboration over contracts
+			- Rather than a requirements document it is better to speak with the client every few days about progress and clarification on features
+		- Adapting to change over following plan
+			- software changes. You should learn from the projects and do it better
+			- You should change as well
+
+# SCRUM
+- an implementation of agile
+- Roles
+	- Stakeholder(s)
+		- Whoever hired you to make the application
+		- for whom the application is for
+	- Project owner
+		- Represents the stakeholder and ultimately responsible for the application
+	- Scrum Master(Lead)
+		- usually the most senior developer on a team
+		- will be in charge of giving programmers tasks
+			- Part senior dev
+			- part cheerleader
+			- part manager
+		- Goal is to make development as efficient as possible and remove barriers
+	- Scrum members (scrumlings)
+		- developers on a team
+- Sprint
+	- 2-3 week iteration on a project
+	- applications should be incrementally built by these sprints
+- Scrum Ceremonies
+	- Day 1
+		- User Stories and Story Pointing
+		- Assigning users stories
+	- Every day
+		- Team standup 
+			- Progress meeting
+			- Every person on team gives quick progress update and asks for help if necessary
+	- Last Day
+		- Sprint retrospective
+			- look at what went good
+			- what went bad
+			- what could have been done better
+			- 

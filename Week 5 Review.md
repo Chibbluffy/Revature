@@ -1,4 +1,7 @@
 #Angular Architecture
+- front end framework, Utilizes TS not JS
+- designed by Google
+- Single Page Application
 - modular in design
 	- every application has a root module
 		- main registry for components and other modules that comprise your angular application
@@ -98,4 +101,28 @@
 	- with a promise you are waiting on 1 thing to come back
 	- You can subscribe to an observable and perform a function every time you get an update
 		- similar in concept to webhooks
-		- 
+
+
+
+
+
+Angular
+- front end framework
+- Single Page Application
+
+Directives
+- custom HTML
+
+Node.JS
+- runtime env for JS
+- a server
+- built on V8 engine, fAST
+
+3 parts of component
+- meta info **decorator**
+- **TS** class
+- **HTML** template
+
+router outlet
+- 
+
